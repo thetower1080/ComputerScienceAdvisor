@@ -13,6 +13,7 @@ assuming the class is not required to graduate.  It will also only suggest class
 int main()
 {
     std::cout << "Hello World!\n";
+
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
