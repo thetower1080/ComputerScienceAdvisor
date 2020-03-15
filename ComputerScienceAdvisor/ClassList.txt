@@ -1,5 +1,69 @@
+MATH 150A-Calculus I 
+01-DIS  MoTuWeFr 8:00AM-8:50AM	480-Teaching Lab	Jennifer Gudgel
+03-DIS  MoWe 8:00AM-9:50AMMH 480-Teaching Lab	Cherlyn Converse
+11-DIS	TuTh 10:00AM-11:50AM	MH 438-Lecture Room	Diana Pirraglia
+18-DIS	TuTh 1:00PM-2:50PM	MH 464-Lecture Room	Fatemeh Khatami		 	
+21-DIS	MoWe 3:00PM-4:50PM	MH 442-Lecture Room	Jeremy Wilson
+26-DIS	MoWe 5:30PM-7:20PM	MH 552-Lecture Room	Luis Ramirez
+85-DIS	TuTh 9:00AM-10:50AM  IRVC-109	Steve Alemansour
+
+MATH 150B-Calculus II 
+02-DIS	MoWeFr 8:00AM-8:50AM	Th 8:00AM-8:50AM	MH 491-Lecture Room	Paul Farnham
+07-DIS	MoWe 10:00AM-11:50AM	MH 457-Lecture Room	Matthew Rathbun
+08-DIS	TuTh 10:00AM-11:50AM	MH 476-Teaching Lab	Amanda Martinez
+16-DIS	TuTh 2:00PM-3:50PM	MH 438-Lecture Room	Wyatte Hooper
+18-DIS	TuTh 5:30PM-7:20PM	MH 285-Lecture Room	John Kwak	
+
+MATH 270A-Mathematical Structures I 
+02-DIS	MoWe 1:00PM-2:15PM	MH 504-Lecture Room	Kimberly Norman
+03-DIS	TuTh 1:00PM-2:15PM	MH 404-Lecture Room	Eric Ratzlaff
+05-DIS	MoWe 4:00PM-5:15PM	MH 285-Lecture Room	Mary Gutaskus
+07-DIS	TuTh 4:00PM-5:15PM	MH 404-Lecture Room	Matthew Varney
+08-DIS	MoWe 5:30PM-6:45PM	MH 655-Lecture Room	Mary Gutaskus
+
+MATH 270B-Mathematical Structures II 
+01-DIS	MoWeFr 8:00AM-8:50AM	MH 514-Lecture Room	Dao Vo
+02-DIS	TuTh 8:30AM-9:45AM	MH 512-Lecture Room	Dao Vo
+03-DIS	MoWeFr 9:00AM-9:50AM	LH 303-Lecture Room	Kimberlee Nomura
+04-DIS	TuTh 10:00AM-11:15AM	MH 491-Lecture Room	Nathaniel Hall
+05-DIS	TuTh 10:00AM-11:15AM	MH 412-Lecture Room	Dao Vo
+06-DIS	MoWe 11:30AM-12:45PM	MH 617-Lecture Room	Kimberly Norman
+85-DIS	MoWe 4:00PM-5:15PM	IRVC-210	Bora Olcken
+
+MATH 338-Statistics Applied to Natural Sciences 
+01-DIS	MoWe 8:30AM-9:45AM	MH 416-Lecture Room	Roula Chawi
+02-ACT	MoWe 10:00AM-10:50AM	MH 044-Computer Lab	Roula Chawi	
+03-DIS	TuTh 8:30AM-9:45AM	MH 491-Lecture Room	Heejeong Lim
+04-ACT  TuTh 10:00AM-10:50AMMH 452-Computer LabHeejeong Lim
+05-DIS  Sa 9:00AM-11:45AMMH 457-Lecture RoomEdward Pineda
+06-ACT  Fr 5:30PM-7:15PMMH 044-Computer LabEdward Pineda
+
+GEOL 101-Introduction to Geology 
+01-LEC  MoWeFr 11:00AM-11:50  AMKHS 199-Lecture Room  Matthew Kirby
+03-LEC	MoWe 1:00PM-2:15PM	RGC 013-Auditorium	W Laton
+04-LEC	MoWe 2:30PM-3:45PM	RGC 013-Auditorium	Jeffrey Knott
+07-LEC	TuTh 10:00AM-11:15AM	MH 238-Lecture Room	Wayne Henderson
+08-LEC	TuTh 1:00PM-2:15PM	MH 121-Lecture Room	Valbone Memeti
+09-LEC	TuTh 8:30AM-9:45AM	KHS 199-Lecture Room	Wayne Henderson
+10-LEC	TuTh 4:00PM-5:15PM	LH 318-Lecture Room	Emily Hamecher
+
+PHYS 225-Fundamental Physics: Mechanics 
+01-LEC	MoWeFr 8:00AM-8:50AM	MH 682-Lecture Room	Michael Dubuque
+03-LEC	MoWe 5:30PM-6:45PM	MH 682-Lecture Room	Shovit Bhari
+04-LEC	TuTh 4:00PM-5:15PM	MH 682-Lecture Room	Gary Kleiban	
+05-LEC	MoWeFr 11:00AM-11:50AM	MH 121-Lecture Room	Alexander Gauf
+
+BIOL 101-Elements of Biology 
+01-LEC	MoWeFr 10:00AM-10:50AM	MH 121-Lecture Room	Valerie Rosa
+03-LEC	MoWeFr 12:00PM-12:50PM	MH 121-Lecture Room	Valerie Rosa
+04-LEC	MoWe 8:30AM-9:45AM	LH 307-Lecture Room	Cindy Duong
+05-LEC	MoWe 1:00PM-2:15PM	MH 264-Lecture Room	Cindy Duong
+06-LEC	MoWe 2:30PM-3:45PM	MH 121-Lecture Room	Valerie Rosa
+10-LEC	TuTh 8:30AM-9:45AM	LH 307-Lecture Room	Victor Pham
+11-LEC	TuTh 10:00AM-11:15AM	GH 252-Lecture Room	Anne Matthews
+50-LEC	TBA	WEB Fully Online Instruction	Krista Henderson
+
 CPSC  120-Introduction to Programming
-Class	Section	Days&Times	Room	Instructor
 01-LEC   Tu 11:30AM-12:45PM    E 202-Lecture Room    Sara Ghadami
 02-ACT   Th 8:30AM-11:15AM    CS 104-Teaching Lab   Sara Ghadami
 03-LEC  Tu 11:30AM-12:45PM    E 202-Lecture Room    Sara Ghadami
@@ -87,12 +151,6 @@ CPSC 311-Technical Writing for Computer Science
 02-DIS	MoWe 4:00PM-5:15PM	CS 110A-Lecture Room	Eric May
 03-DIS	TuTh 5:30PM-6:45PM	CS 102B-Lecture Room	Steven Cooper
 04-DIS	TuTh 4:00PM-5:15PM	CS 110A-Lecture Room	Bach Ho
-
-CPSC 313-The Computer Impact
-50-DIS	TBA	WEB Fully Online Instruction	Joseph Martinazzi13411
-51-DIS	TBA	WEB Fully Online Instruction	Sara Hariri
-52-DIS	TBA	WEB Fully Online Instruction	Pouya Radfar
-53-DIS	TBA	WEB Fully Online Instruction	Sara Ghadami
 
 CPSC 315-Professional Ethics in Computing
 01-DIS	We 7:00PM-9:45PM	CS 408-Teaching Lab	Pouya Radfar
