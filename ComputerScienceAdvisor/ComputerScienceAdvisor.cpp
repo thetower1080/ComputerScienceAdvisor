@@ -41,9 +41,11 @@ public:
 	void setSPreferences(char[10], int);
 	void getSPreferences(char[10], int);
 };
+Student S;
 
 int main()
 {
+	 
 	Welcome();
 	InputId();
 	if (!LoadFile())
