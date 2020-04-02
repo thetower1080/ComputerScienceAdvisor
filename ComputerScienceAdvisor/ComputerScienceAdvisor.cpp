@@ -16,11 +16,11 @@ to finally altering the student preferences file based on whether the student li
 using namespace std;
 
 void Welcome();
-void InputId();
-bool LoadFile();
-void NewFile();
-bool NewClassSchedule();
-void MutatePreferences();
+void InputId(Student);
+bool LoadFile(Student);
+void NewFile(Student);
+bool NewClassSchedule(Student);
+void MutatePreferences(Student);
 
 class Student {
 	string Fname, Lname, CWID;
@@ -36,80 +36,89 @@ public:
 	void setname(string, string);
 	string getFname();
 	string getLname();
-	void setCWID(string, string);
+	void setCWID(string);
 	string getCWID();
 	void setSPreferences(char[10], int);
 	void getSPreferences(char[10], int);
 };
-Student S;
+
 
 int main()
 {
-	 
+	Student S;
 	Welcome();
-	InputId();
-	if (!LoadFile())
-	{
-		NewFile();
-	}
+	InputId(S);
+	if (!LoadFile(S))
+		NewFile(S);
 	bool Repeat = true;
 	while (Repeat)
-		Repeat = NewClassSchedule();
+		Repeat = NewClassSchedule(S);
 	system("pause");
 }
 
 void Welcome()
 {
-
+	cout << "Hello World";//not done lol
 }
-void InputId()
+void InputId(Student S)
+{
+	string Fname, Lname, CWID;
+	cout << "Please input your First Name: ";
+	cin >> Fname;
+	cout << "Please input your Last Name: ";
+	cin >> Lname;
+	cout << "Please input your CWID: ";
+	cin >> CWID;
+	S.setname(Fname, Lname);
+	S.setCWID(CWID);
+}
+bool LoadFile(Student S)// will return true if name is found, else false
 {
 
 }
-bool LoadFile()// will return true if name is found, else false
+void NewFile(Student S)
 {
 
 }
-void NewFile()
+bool NewClassSchedule(Student S)//will return true if the program needs to repeat
 {
-
+	MutatePreferences(S);
 }
-bool NewClassSchedule()//will return true if the program needs to repeat
-{
-	MutatePreferences();
-}
-void MutatePreferences()
+void MutatePreferences(Student S)
 {
 
 }
 
-//Student functions
+// Student functions
 
-void Student::setname(string, string)
+void Student::setname(string F, string L)
 {
-
+	Fname = F;
+	Lname = L;
 }
 string Student::getFname()
 {
-
+	return Fname;
 }
 string Student::getLname()
 {
-
+	return Lname;
 }
-void Student::setCWID(string, string)
+void Student::setCWID(string C)
 {
-
+	CWID = C;
 }
 string Student::getCWID()
 {
-
+	return CWID;
 }
-void Student::setSPreferences(char[10], int)
+void Student::setSPreferences(char SP[10], int i)
 {
-
+	for (int j = 0; j < 10; j++)
+		SPreferences[i][j] = SP[j];
 }
-void Student::getSPreferences(char[10], int)
+void Student::getSPreferences(char SP[10], int i)
 {
-
+	for (int j = 0; j < 10; j++)
+		SP[j] = SPreferences[i][j];
 }
