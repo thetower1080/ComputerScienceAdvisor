@@ -1,0 +1,125 @@
+Student Name: Kye Nelson
+CWID: 97657967
+Class Standing: Sophomore
+Courses Taken:
+    Dept/No   Course Title                Unts   GR    GP     Footnotes
+    CPSC 120  Intro to Programming         3.0   A     12.0
+    CPSC 121  Object-Oriented Programming  3.0   B     9.0
+
+Student Name:Roshni Curtis
+CWID: 68357514
+Class Standing: Freshman
+Courses Taken:
+    Dept/No   Course Title                Unts   GR    GP     Footnotes
+    CPSC 120  Intro to Programming         3.0   A     12.0
+
+Student Name: Connah Vazquez
+CWID: 26218891
+Class Standing: Sophomore
+Courses Taken:
+    Dept/No   Course Title                Unts   GR    GP     Footnotes
+    CPSC 120  Intro to Programming         3.0   A     12.0
+    CPSC 121  Object-Oriented Programming  3.0   B     9.0
+    CPSC 131  Data Structures              3.0   B     9.0
+
+Student Name: Arslan Mackie
+CWID: 86041459
+Class Standing: Junior
+Courses Taken:
+    Dept/No   Course Title                Unts   GR    GP     Footnotes
+    CPSC 120  Intro to Programming         3.0   A     12.0
+    CPSC 121  Object-Oriented Programming  3.0   B     9.0
+    CPSC 131  Data Structures              3.0   B     9.0
+    CPSC 332  File Structure & Database    3.0   A     12.0
+    CPSC 240  Comp Org & Assembly Lang     3.0   B    9.0
+
+Student Name: Tyrese Hagan
+CWID: 33646444
+Class Standing: Sophomore
+Courses Taken:
+Courses Taken:
+    Dept/No   Course Title                Unts   GR    GP     Footnotes
+    CPSC 120  Intro to Programming         3.0   A     12.0
+    CPSC 121  Object-Oriented Programming  3.0   B     9.0
+    CPSC 131  Data Structures              3.0   B     9.0
+    CPSC 332  File Structure & Database    3.0   A     12.0
+    CPSC 240  Comp Org & Assembly Lang     3.0   B    9.0
+
+Student Name: Mikey Sheehan
+CWID: 62937321
+Class Standing: Junior
+Courses Taken:
+    Dept/No   Course Title                Unts   GR    GP     Footnotes
+    CPSC 120  Intro to Programming         3.0   A     12.0
+    CPSC 121  Object-Oriented Programming  3.0   B     9.0
+    CPSC 131  Data Structures              3.0   B     9.0
+    CPSC 332  File Structure & Database    3.0   A     12.0
+    CPSC 240  Comp Org & Assembly Lang     3.0   B     9.0
+    CPSC 362  Software Engineering         3.0   B     9.0
+Student Name: Henna House
+CWID: 13953623
+Class Standing: Junior
+Courses Taken:
+    Dept/No   Course Title                Unts   GR    GP     Footnotes
+    CPSC 120  Intro to Programming         3.0   A     12.0
+    CPSC 121  Object-Oriented Programming  3.0   B     9.0
+    CPSC 131  Data Structures              3.0   B     9.0
+    CPSC 223P Python Programming           3.0   B     9.0
+    CPSC 240  Comp Org & Assembly Lang     3.0   B     9.0
+    CPSC 323  Compilers and Languages      3.0   B     9.0
+    CPSC 351  Operating System Concepts    3.0   A     12.0
+    CPSC 311  Tech Writing for Comp Sci    3.0   B     9.0
+
+
+Student Name: Nafisa Sutherland
+CWID: 42430867
+Class Standing: Senior
+Courses Taken:
+    Dept/No   Course Title                Unts   GR    GP     Footnotes
+    CPSC 120  Intro to Programming         3.0   A     12.0
+    CPSC 121  Object-Oriented Programming  3.0   B     9.0
+    CPSC 131  Data Structures              3.0   B     9.0
+    CPSC 223P Python Programming           3.0   B     9.0
+    CPSC 240  Comp Org & Assembly Lang     3.0   B     9.0
+    CPSC 311  Tech Writing for Comp Sci    3.0   B     9.0
+    CPSC 323  Compilers and Languages      3.0   B     9.0
+    CPSC 335  Algorithm Engineering        3.0   B     9.0
+    CPSC 471  Computer Communications      3.0   A     12.0
+    CPSC 351  Operating System Concepts    3.0   A     12.0
+    CPSC 362  Software Engineering         3.0   A     12.0
+
+Student Name: Josiah Moran
+CWID: 52139431
+Class Standing: Senior
+Courses Taken:
+    Dept/No   Course Title                Unts   GR    GP     Footnotes
+    CPSC 120  Intro to Programming         3.0   A     12.0
+    CPSC 121  Object-Oriented Programming  3.0   B     9.0
+    CPSC 131  Data Structures              3.0   B     9.0
+    CPSC 223P Python Programming           3.0   B     9.0
+    CPSC 240  Comp Org & Assembly Lang     3.0   B     9.0
+    CPSC 311  Tech Writing for Comp Sci    3.0   B     9.0
+    CPSC 315  Prof Ethics in Computing     3.0   A     12.0
+    CPSC 323  Compilers and Languages      3.0   B     9.0
+    CPSC 335  Algorithm Engineering        3.0   B     9.0
+    CPSC 440  Comp Syst Architecture       3.0   B     9.0
+    CPSC 471  Computer Communications      3.0   A     12.0
+    CPSC 351  Operating System Concepts    3.0   A     12.0
+    CPSC 362  Software Engineering         3.0   A     12.0
+
+
+Student Name: Inez Weston
+CWID: 15528273
+Class Standing:
+Class Standing: Senior
+Courses Taken:
+    Dept/No   Course Title                Unts   GR    GP     Footnotes
+    CPSC 120  Intro to Programming         3.0   A     12.0
+    CPSC 121  Object-Oriented Programming  3.0   B     9.0
+    CPSC 131  Data Structures              3.0   B     9.0
+    CPSC 223P Python Programming           3.0   B     9.0
+    CPSC 240  Comp Org & Assembly Lang     3.0   B     9.0
+    CPSC 311  Tech Writing for Comp Sci    3.0   B     9.0
+    CPSC 323  Compilers and Languages      3.0   B     9.0
+    CPSC 335  Algorithm Engineering        3.0   B     9.0
+    CPSC 351  Operating System Concepts    3.0   A     12.0
