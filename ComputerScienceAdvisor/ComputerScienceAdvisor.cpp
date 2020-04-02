@@ -16,11 +16,11 @@ to finally altering the student preferences file based on whether the student li
 using namespace std;
 
 void Welcome();
-void InputId(Student);
+void InputId(Student&);
 bool LoadFile(Student);
 void NewFile(Student);
 bool NewClassSchedule(Student);
-void MutatePreferences(Student);
+void MutatePreferences(Student&);
 
 class Student {
 	string Fname, Lname, CWID;
@@ -31,6 +31,7 @@ class Student {
 	char SPreferences[10][10] = { {0,0,0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0,0,0},
 	{0,0,0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0,0,0},
 	{0,0,0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0,0,0} };
+	//will need classes taken as well
 	
 public:
 	void setname(string, string);
@@ -40,6 +41,7 @@ public:
 	string getCWID();
 	void setSPreferences(char[10], int);
 	void getSPreferences(char[10], int);
+	//will need classes taken as well
 };
 
 
@@ -60,7 +62,7 @@ void Welcome()
 {
 	cout << "Hello World";//not done lol
 }
-void InputId(Student S)
+void InputId(Student& S)
 {
 	string Fname, Lname, CWID;
 	cout << "Please input your First Name: ";
@@ -84,7 +86,7 @@ bool NewClassSchedule(Student S)//will return true if the program needs to repea
 {
 	MutatePreferences(S);
 }
-void MutatePreferences(Student S)
+void MutatePreferences(Student &S)
 {
 
 }
