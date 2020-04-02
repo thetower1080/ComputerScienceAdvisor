@@ -19,7 +19,7 @@ void Welcome();
 void InputId(Student&);
 bool LoadFile(Student);
 void NewFile(Student);
-bool NewClassSchedule(Student);
+bool NewClassSchedule(Student&);
 void MutatePreferences(Student&);
 
 class Student {
@@ -82,7 +82,7 @@ void NewFile(Student S)
 {
 
 }
-bool NewClassSchedule(Student S)//will return true if the program needs to repeat
+bool NewClassSchedule(Student &S)//will return true if the program needs to repeat
 {
 	MutatePreferences(S);
 }
