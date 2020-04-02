@@ -17,8 +17,8 @@ using namespace std;
 
 void Welcome();
 void InputId(Student&);
-bool LoadFile(Student);
-void NewFile(Student);
+bool LoadFile(Student&);
+void NewFile(Student&);
 bool NewClassSchedule(Student&);
 void MutatePreferences(Student&);
 
@@ -74,11 +74,11 @@ void InputId(Student& S)
 	S.setname(Fname, Lname);
 	S.setCWID(CWID);
 }
-bool LoadFile(Student S)// will return true if name is found, else false
+bool LoadFile(Student &S)// will return true if name is found, else false
 {
 
 }
-void NewFile(Student S)
+void NewFile(Student &S)
 {
 
 }
