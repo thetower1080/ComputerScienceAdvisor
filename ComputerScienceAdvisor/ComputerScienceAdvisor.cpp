@@ -57,6 +57,7 @@ int main()
 	bool Repeat = true;
 	while (Repeat)
 		Repeat = NewClassSchedule(S);
+	SaveFile(S);
 	system("pause");
 }
 
