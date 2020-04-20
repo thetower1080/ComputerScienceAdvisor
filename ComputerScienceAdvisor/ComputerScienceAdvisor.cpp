@@ -19,8 +19,10 @@ void Welcome();
 void InputId(Student&);
 bool LoadFile(Student&);
 void NewFile(Student&);
+void SaveFile(Student&);
 bool NewClassSchedule(Student&);
 void MutatePreferences(Student&);
+
 
 class Student {
 	string Fname, Lname, CWID;
@@ -79,6 +81,10 @@ bool LoadFile(Student &S)// will return true if name is found, else false
 
 }
 void NewFile(Student &S)
+{
+
+}
+void SaveFile(Student& S)
 {
 
 }
