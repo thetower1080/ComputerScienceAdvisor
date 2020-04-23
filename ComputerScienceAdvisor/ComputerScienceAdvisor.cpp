@@ -318,12 +318,12 @@ bool NewClassSchedule(Student& S)//will return true if the program needs to repe
 	cout << endl << "How many classes do you want to take? ";
 	cin >> answer;
 	string ClassSchedule = "";
-	string CSUFClasses[40], SubClasses[20][40];
+	string CSUFClasses[40], SubClasses[21][40];
 	int i = 0, j = 0;
 	for (i = 0; i < 40; i++)
 	{
 		CSUFClasses[i] = "~";
-		for (int j = 0; j < 20; j++)
+		for (int j = 0; j < 21; j++)
 		{
 			SubClasses[j][i] = "~";
 		}
@@ -367,10 +367,7 @@ bool NewClassSchedule(Student& S)//will return true if the program needs to repe
 			c = 5;//CPSC120
 			j = 0;
 			while (SubClasses[j][c][0] != '~')
-			{
 				j++;
-			}
-
 			bool temp = true;
 			int count = 0;
 			bool broke = false;
@@ -380,8 +377,7 @@ bool NewClassSchedule(Student& S)//will return true if the program needs to repe
 				r = rand() % j;
 				temp = preferncechecker(SubClasses[r][c], SPreferences);
 				count++;
-
-				if (count > 10)
+				if (count > 100)
 				{
 					broke = true;
 					break;
@@ -409,7 +405,7 @@ bool NewClassSchedule(Student& S)//will return true if the program needs to repe
 				temp = preferncechecker(SubClasses[r][c], SPreferences);
 				count++;
 
-				if (count > 10)
+				if (count > 100)
 				{
 					broke = true;
 					break;
@@ -437,7 +433,7 @@ bool NewClassSchedule(Student& S)//will return true if the program needs to repe
 				temp = preferncechecker(SubClasses[r][c], SPreferences);
 				count++;
 
-				if (count > 10)
+				if (count > 100)
 				{
 					broke = true;
 					break;
@@ -455,6 +451,8 @@ bool NewClassSchedule(Student& S)//will return true if the program needs to repe
 			j = 0;
 			while (SubClasses[j][c][0] != '~')
 				j++;
+
+				
 			bool temp = true;
 			int count = 0;
 			bool broke = false;
@@ -465,7 +463,7 @@ bool NewClassSchedule(Student& S)//will return true if the program needs to repe
 				temp = preferncechecker(SubClasses[r][c], SPreferences);
 				count++;
 
-				if (count > 10)
+				if (count > 100)
 				{
 					broke = true;
 					break;
@@ -493,7 +491,7 @@ bool NewClassSchedule(Student& S)//will return true if the program needs to repe
 				temp = preferncechecker(SubClasses[r][c], SPreferences);
 				count++;
 
-				if (count > 10)
+				if (count > 100)
 				{
 					broke = true;
 					break;
@@ -521,7 +519,7 @@ bool NewClassSchedule(Student& S)//will return true if the program needs to repe
 				temp = preferncechecker(SubClasses[r][c], SPreferences);
 				count++;
 
-				if (count > 10)
+				if (count > 100)
 				{
 					broke = true;
 					break;
@@ -549,7 +547,7 @@ bool NewClassSchedule(Student& S)//will return true if the program needs to repe
 				temp = preferncechecker(SubClasses[r][c], SPreferences);
 				count++;
 
-				if (count > 10)
+				if (count > 100)
 				{
 					broke = true;
 					break;
@@ -577,7 +575,7 @@ bool NewClassSchedule(Student& S)//will return true if the program needs to repe
 				temp = preferncechecker(SubClasses[r][c], SPreferences);
 				count++;
 
-				if (count > 10)
+				if (count > 100)
 				{
 					broke = true;
 					break;
@@ -605,7 +603,7 @@ bool NewClassSchedule(Student& S)//will return true if the program needs to repe
 				temp = preferncechecker(SubClasses[r][c], SPreferences);
 				count++;
 
-				if (count > 10)
+				if (count > 100)
 				{
 					broke = true;
 					break;
@@ -634,7 +632,7 @@ bool NewClassSchedule(Student& S)//will return true if the program needs to repe
 				temp = preferncechecker(SubClasses[r][c], SPreferences);
 				count++;
 
-				if (count > 10)
+				if (count > 100)
 				{
 					broke = true;
 					break;
@@ -660,7 +658,7 @@ bool NewClassSchedule(Student& S)//will return true if the program needs to repe
 				temp = preferncechecker(SubClasses[r][c], SPreferences);
 				count++;
 
-				if (count > 10)
+				if (count > 100)
 				{
 					broke = true;
 					break;
@@ -688,7 +686,7 @@ bool NewClassSchedule(Student& S)//will return true if the program needs to repe
 				temp = preferncechecker(SubClasses[r][c], SPreferences);
 				count++;
 
-				if (count > 10)
+				if (count > 100)
 				{
 					broke = true;
 					break;
@@ -716,7 +714,7 @@ bool NewClassSchedule(Student& S)//will return true if the program needs to repe
 				temp = preferncechecker(SubClasses[r][c], SPreferences);
 				count++;
 
-				if (count > 10)
+				if (count > 100)
 				{
 					broke = true;
 					break;
@@ -744,7 +742,7 @@ bool NewClassSchedule(Student& S)//will return true if the program needs to repe
 				temp = preferncechecker(SubClasses[r][c], SPreferences);
 				count++;
 
-				if (count > 10)
+				if (count > 100)
 				{
 					broke = true;
 					break;
@@ -772,7 +770,7 @@ bool NewClassSchedule(Student& S)//will return true if the program needs to repe
 				temp = preferncechecker(SubClasses[r][c], SPreferences);
 				count++;
 
-				if (count > 10)
+				if (count > 100)
 				{
 					broke = true;
 					break;
@@ -800,7 +798,7 @@ bool NewClassSchedule(Student& S)//will return true if the program needs to repe
 				temp = preferncechecker(SubClasses[r][c], SPreferences);
 				count++;
 
-				if (count > 10)
+				if (count > 100)
 				{
 					broke = true;
 					break;
@@ -828,7 +826,7 @@ bool NewClassSchedule(Student& S)//will return true if the program needs to repe
 				temp = preferncechecker(SubClasses[r][c], SPreferences);
 				count++;
 
-				if (count > 10)
+				if (count > 100)
 				{
 					broke = true;
 					break;
@@ -856,7 +854,7 @@ bool NewClassSchedule(Student& S)//will return true if the program needs to repe
 				temp = preferncechecker(SubClasses[r][c], SPreferences);
 				count++;
 
-				if (count > 10)
+				if (count > 100)
 				{
 					broke = true;
 					break;
@@ -884,7 +882,7 @@ bool NewClassSchedule(Student& S)//will return true if the program needs to repe
 				temp = preferncechecker(SubClasses[r][c], SPreferences);
 				count++;
 
-				if (count > 10)
+				if (count > 100)
 				{
 					broke = true;
 					break;
@@ -912,7 +910,7 @@ bool NewClassSchedule(Student& S)//will return true if the program needs to repe
 				temp = preferncechecker(SubClasses[r][c], SPreferences);
 				count++;
 
-				if (count > 10)
+				if (count > 100)
 				{
 					broke = true;
 					break;
@@ -940,7 +938,7 @@ bool NewClassSchedule(Student& S)//will return true if the program needs to repe
 				temp = preferncechecker(SubClasses[r][c], SPreferences);
 				count++;
 
-				if (count > 10)
+				if (count > 100)
 				{
 					broke = true;
 					break;
@@ -968,7 +966,7 @@ bool NewClassSchedule(Student& S)//will return true if the program needs to repe
 				temp = preferncechecker(SubClasses[r][c], SPreferences);
 				count++;
 
-				if (count > 10)
+				if (count > 100)
 				{
 					broke = true;
 					break;
