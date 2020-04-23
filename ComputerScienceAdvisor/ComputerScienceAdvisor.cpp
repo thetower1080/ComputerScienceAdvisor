@@ -14,16 +14,13 @@ to finally altering the student preferences file based on whether the student li
 #include <iostream>
 #include <string>
 #include <fstream>
+#include <time.h>
+#include <stdlib.h> 
 using namespace std;
 
 class Student {
 	string Fname, Lname, CWID;
-	// I don't know how many preferences there will be so I put 10 here but using char for storage of it instead of binary will help store things better since 1 char is 8 binary preferences.
-	// In this case 80 total binary preferences.
-	// I have 10 different preferences of length 10 so we can mutate the other 9 preferences based on the first one.
-	// I initialised it to  0000000000 for now but it will not likely stay that number since we need a preference number for newly made preferences.
-	bool SPreferences[10][10];
-	//will need classes taken as well
+	bool SPreferences[5][10];
 	bool Classtaken[26];
 
 public:
@@ -158,7 +155,6 @@ bool LoadFile(Student& S)// will return true if name is found, else false
 		for (int j = 0; j < 10; j++)
 		{
 			SPreferences[j] = (line[i + j] == '1');
-			cout << SPreferences[j] << endl;
 			i++;
 		}
 		S.setSPreferences(SPreferences, 0);
@@ -231,7 +227,6 @@ void SaveOldFile(Student& S)
 	inputline = Fname + "," + Lname + "," + CWID;
 	for (int i = 0; i < 10; i++)
 	{
-		cout << SPreferences[i] << endl;
 	if (SPreferences[i])
 		inputline += ",1";
 	else
@@ -320,13 +315,30 @@ bool NewClassSchedule(Student &S)//will return true if the program needs to repe
 }
 void MutatePreferences(Student &S)
 {
-
+	bool SPreferences[10];
+	int r[5] = {0,0,0,0,0};
+	srand(time(NULL));
+	for (int i = 1; i < 5; i++)
+	{
+		S.getSPreferences(SPreferences, 0);
+		bool temp=true;
+		while (temp)
+		{
+			temp = false;
+			r[i] = rand() % 10;
+			for (int j = 1; j < i; j++)
+				if (r[j] == r[i])
+					temp = true;
+		}
+		SPreferences[r[i]] = !SPreferences[r[i]];
+		S.setSPreferences(SPreferences, i);
+	}
 }
 
 // Student functions
 void Student::setupbools()
 {
-	for (int i = 0; i < 10; i++)
+	for (int i = 0; i < 5; i++)
 		for (int j = 0; j < 10; j++)
 			SPreferences[i][j] = 0;
 	for (int i = 0; i < 26; i++)
@@ -355,19 +367,15 @@ string Student::getCWID()
 }
 void Student::setSPreferences(bool SP[10], int i)
 {
-	cout << "setSPreferences" << endl;
 	for (int j = 0; j < 10; j++)
 	{
-		cout << SP[i] << endl;
 		SPreferences[i][j] = SP[j];
 	}
 }
 void Student::getSPreferences(bool SP[10], int i)
 {
-	cout << "getSPreferences" << endl;
 	for (int j = 0; j < 10; j++)
 	{
-		cout << SP[i] << endl;
 		SP[j] = SPreferences[i][j];
 	}
 }
