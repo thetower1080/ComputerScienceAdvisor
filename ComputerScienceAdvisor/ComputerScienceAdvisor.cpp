@@ -44,6 +44,7 @@ void SaveNewFile(Student&);
 void SaveOldFile(Student&);
 bool NewClassSchedule(Student&);
 void MutatePreferences(Student&);
+bool preferncechecker(string, bool[10]);
 
 
 
@@ -51,6 +52,7 @@ void MutatePreferences(Student&);
 
 int main()
 {
+	srand(time(NULL));
 	bool infile, newst = true;
 	Student S;
 	Welcome();
@@ -307,17 +309,699 @@ void SaveOldFile(Student& S)
 	outfile << totalfile;
 	file.close();
 }
-bool NewClassSchedule(Student &S)//will return true if the program needs to repeat
+bool NewClassSchedule(Student& S)//will return true if the program needs to repeat
 {
 	MutatePreferences(S);
+	bool SPreferences[10], Classtaken[26];
+	S.getClasstaken(Classtaken);
+	int num = 0, answer = 0, r = 0, c = 0;
+	cout << endl << "How many classes do you want to take? ";
+	cin >> answer;
+	string ClassSchedule = "";
+	string CSUFClasses[40], SubClasses[20][40];
+	int i = 0, j = 0;
+	for (i = 0; i < 40; i++)
+	{
+		CSUFClasses[i] = "~";
+		for (int j = 0; j < 20; j++)
+		{
+			SubClasses[j][i] = "~";
+		}
+	}
+	i = 0;
+	ifstream readfile;
+	readfile.open("ClassList.txt");
+	string line;
+	while (getline(readfile, line))
+	{
+		CSUFClasses[i] = line;
+		//cout << "CSUFClasses[" << i << "]: " << CSUFClasses[i] << endl;
+		j = 0;
+		getline(readfile, line);
+		while (line != ";")
+		{
+			SubClasses[j][i] = line;
+			//cout << "SubClasses[" << j << "][" << i << "]: " << SubClasses[j][i] << endl;
+			j++;
+			getline(readfile, line);
+		}
+		i++;
+	}
+	readfile.close();
+	for (i = 0; i < 5; i++)
+	{
 
-	return false;
+		if (!ClassSchedule.empty())
+		{
+			cout << endl<< "Class Schedule #" << i << endl;
+			cout << ClassSchedule;
+		}
+		ClassSchedule = "";
+		num = 0;
+		S.getSPreferences(SPreferences, i);
+		if (num == answer)
+			continue;
+
+		if (!Classtaken[0])//CPSC120
+		{
+			c = 5;//CPSC120
+			j = 0;
+			while (SubClasses[j][c][0] != '~')
+			{
+				j++;
+			}
+
+			bool temp = true;
+			int count = 0;
+			bool broke = false;
+			while (temp)
+			{
+				temp = false;
+				r = rand() % j;
+				temp = preferncechecker(SubClasses[r][c], SPreferences);
+				count++;
+
+				if (count > 10)
+				{
+					broke = true;
+					break;
+				}
+			}
+			if (!broke)
+				ClassSchedule = ClassSchedule + CSUFClasses[c] + "\n" + SubClasses[r][c] + "\n";
+			num++;
+		}
+		if (num == answer)
+			continue;
+		if (!Classtaken[16])//Math 150A
+		{
+			c = 0;//Math 150A
+			j = 0;
+			while (SubClasses[j][c][0] != '~')
+				j++;
+			bool temp = true;
+			int count = 0;
+			bool broke = false;
+			while (temp)
+			{
+				temp = false;
+				r = rand() % j;
+				temp = preferncechecker(SubClasses[r][c], SPreferences);
+				count++;
+
+				if (count > 10)
+				{
+					broke = true;
+					break;
+				}
+			}
+			if (!broke)
+				ClassSchedule = ClassSchedule + CSUFClasses[c] + "\n" + SubClasses[r][c] + "\n";
+			num++;
+		}
+		if (num == answer)
+			continue;
+		if (!Classtaken[18])//Math270A
+		{
+			c = 2;//Math270A
+			j = 0;
+			while (SubClasses[j][c][0] != '~')
+				j++;
+			bool temp = true;
+			int count = 0;
+			bool broke = false;
+			while (temp)
+			{
+				temp = false;
+				r = rand() % j;
+				temp = preferncechecker(SubClasses[r][c], SPreferences);
+				count++;
+
+				if (count > 10)
+				{
+					broke = true;
+					break;
+				}
+			}
+			if (!broke)
+				ClassSchedule = ClassSchedule + CSUFClasses[c] + "\n" + SubClasses[r][c] + "\n";
+			num++;
+		}
+		if (num == answer)
+			continue;
+		if (!Classtaken[1] && Classtaken[0])//CPSC121
+		{
+			c = 6;//CPSC121
+			j = 0;
+			while (SubClasses[j][c][0] != '~')
+				j++;
+			bool temp = true;
+			int count = 0;
+			bool broke = false;
+			while (temp)
+			{
+				temp = false;
+				r = rand() % j;
+				temp = preferncechecker(SubClasses[r][c], SPreferences);
+				count++;
+
+				if (count > 10)
+				{
+					broke = true;
+					break;
+				}
+			}
+			if (!broke)
+				ClassSchedule = ClassSchedule + CSUFClasses[c] + "\n" + SubClasses[r][c] + "\n";
+			num++;
+		}
+		if (num == answer)
+			continue;
+		if (!Classtaken[17] && Classtaken[16])//MATH150B
+		{
+			c = 1;//MATH150B
+			j = 0;
+			while (SubClasses[j][c][0] != '~')
+				j++;
+			bool temp = true;
+			int count = 0;
+			bool broke = false;
+			while (temp)
+			{
+				temp = false;
+				r = rand() % j;
+				temp = preferncechecker(SubClasses[r][c], SPreferences);
+				count++;
+
+				if (count > 10)
+				{
+					broke = true;
+					break;
+				}
+			}
+			if (!broke)
+				ClassSchedule = ClassSchedule + CSUFClasses[c] + "\n" + SubClasses[r][c] + "\n";
+			num++;
+		}
+		if (num == answer)
+			continue;
+		if (!Classtaken[19] && Classtaken[18])//MATH270B
+		{
+			c = 3;//MATH270B
+			j = 0;
+			while (SubClasses[j][c][0] != '~')
+				j++;
+			bool temp = true;
+			int count = 0;
+			bool broke = false;
+			while (temp)
+			{
+				temp = false;
+				r = rand() % j;
+				temp = preferncechecker(SubClasses[r][c], SPreferences);
+				count++;
+
+				if (count > 10)
+				{
+					broke = true;
+					break;
+				}
+			}
+			if (!broke)
+				ClassSchedule = ClassSchedule + CSUFClasses[c] + "\n" + SubClasses[r][c] + "\n";
+			num++;
+		}
+		if (num == answer)
+			continue;
+		if (!Classtaken[2] && Classtaken[1])//CPSC131
+		{
+			c = 7;//CPSC131
+			j = 0;
+			while (SubClasses[j][c][0] != '~')
+				j++;
+			bool temp = true;
+			int count = 0;
+			bool broke = false;
+			while (temp)
+			{
+				temp = false;
+				r = rand() % j;
+				temp = preferncechecker(SubClasses[r][c], SPreferences);
+				count++;
+
+				if (count > 10)
+				{
+					broke = true;
+					break;
+				}
+			}
+			if (!broke)
+				ClassSchedule = ClassSchedule + CSUFClasses[c] + "\n" + SubClasses[r][c] + "\n";
+			num++;
+		}
+		if (num == answer)
+			continue;
+		if (!Classtaken[20] && Classtaken[17])//MATH 338
+		{
+			c = 4;//MATH 338
+			j = 0;
+			while (SubClasses[j][c][0] != '~')
+				j++;
+			bool temp = true;
+			int count = 0;
+			bool broke = false;
+			while (temp)
+			{
+				temp = false;
+				r = rand() % j;
+				temp = preferncechecker(SubClasses[r][c], SPreferences);
+				count++;
+
+				if (count > 10)
+				{
+					broke = true;
+					break;
+				}
+			}
+			if (!broke)
+				ClassSchedule = ClassSchedule + CSUFClasses[c] + "\n" + SubClasses[r][c] + "\n";
+			num++;
+		}
+		if (num == answer)
+			continue;
+		if (!Classtaken[5] && Classtaken[2])//CPSC301
+		{
+			c = 13;//CPSC131
+			j = 0;
+			while (SubClasses[j][c][0] != '~')
+				j++;
+			bool temp = true;
+			int count = 0;
+			bool broke = false;
+			while (temp)
+			{
+				temp = false;
+				r = rand() % j;
+				temp = preferncechecker(SubClasses[r][c], SPreferences);
+				count++;
+
+				if (count > 10)
+				{
+					broke = true;
+					break;
+				}
+			}
+			if (!broke)
+				ClassSchedule = ClassSchedule + CSUFClasses[c] + "\n" + SubClasses[r][c] + "\n";
+			num++;
+		}
+		if (num == answer)
+			continue;
+		r = rand() % 2;
+		if (!Classtaken[3] && Classtaken[2] && r == 0)//CPSC223C
+		{
+			c = 8;//CPSC223C
+			j = 0;
+			while (SubClasses[j][c][0] != '~')
+				j++;
+			bool temp = true;
+			int count = 0;
+			bool broke = false;
+			while (temp)
+			{
+				temp = false;
+				r = rand() % j;
+				temp = preferncechecker(SubClasses[r][c], SPreferences);
+				count++;
+
+				if (count > 10)
+				{
+					broke = true;
+					break;
+				}
+			}
+			if (!broke)
+				ClassSchedule = ClassSchedule + CSUFClasses[c] + "\n" + SubClasses[r][c] + "\n";
+			num++;
+		}
+		else if (!Classtaken[3] && Classtaken[2] && r == 1)//CPSC223P
+		{
+			c = 9;//CPSC223P
+			j = 0;
+			while (SubClasses[j][c][0] != '~')
+				j++;
+			bool temp = true;
+			int count = 0;
+			bool broke = false;
+			while (temp)
+			{
+				temp = false;
+				r = rand() % j;
+				temp = preferncechecker(SubClasses[r][c], SPreferences);
+				count++;
+
+				if (count > 10)
+				{
+					broke = true;
+					break;
+				}
+			}
+			if (!broke)
+				ClassSchedule = ClassSchedule + CSUFClasses[c] + "\n" + SubClasses[r][c] + "\n";
+			num++;
+		}
+		if (num == answer)
+			continue;
+		if (!Classtaken[4] && Classtaken[2] && Classtaken[18])//CPSC240
+		{
+			c = 10;//CPSC240
+			j = 0;
+			while (SubClasses[j][c][0] != '~')
+				j++;
+			bool temp = true;
+			int count = 0;
+			bool broke = false;
+			while (temp)
+			{
+				temp = false;
+				r = rand() % j;
+				temp = preferncechecker(SubClasses[r][c], SPreferences);
+				count++;
+
+				if (count > 10)
+				{
+					broke = true;
+					break;
+				}
+			}
+			if (!broke)
+				ClassSchedule = ClassSchedule + CSUFClasses[c] + "\n" + SubClasses[r][c] + "\n";
+			num++;
+		}
+		if (num == answer)
+			continue;
+		if (!Classtaken[6] && Classtaken[2])//CPSC311
+		{
+			c = 14;//CPSC311
+			j = 0;
+			while (SubClasses[j][c][0] != '~')
+				j++;
+			bool temp = true;
+			int count = 0;
+			bool broke = false;
+			while (temp)
+			{
+				temp = false;
+				r = rand() % j;
+				temp = preferncechecker(SubClasses[r][c], SPreferences);
+				count++;
+
+				if (count > 10)
+				{
+					broke = true;
+					break;
+				}
+			}
+			if (!broke)
+				ClassSchedule = ClassSchedule + CSUFClasses[c] + "\n" + SubClasses[r][c] + "\n";
+			num++;
+		}
+		if (num == answer)
+			continue;
+		if (!Classtaken[7] && Classtaken[6])//CPSC315
+		{
+			c = 15;//CPSC315
+			j = 0;
+			while (SubClasses[j][c][0] != '~')
+				j++;
+			bool temp = true;
+			int count = 0;
+			bool broke = false;
+			while (temp)
+			{
+				temp = false;
+				r = rand() % j;
+				temp = preferncechecker(SubClasses[r][c], SPreferences);
+				count++;
+
+				if (count > 10)
+				{
+					broke = true;
+					break;
+				}
+			}
+			if (!broke)
+				ClassSchedule = ClassSchedule + CSUFClasses[c] + "\n" + SubClasses[r][c] + "\n";
+			num++;
+		}
+		if (num == answer)
+			continue;
+		if (!Classtaken[8] && Classtaken[5])//CPSC323
+		{
+			c = 16;//CPSC323
+			j = 0;
+			while (SubClasses[j][c][0] != '~')
+				j++;
+			bool temp = true;
+			int count = 0;
+			bool broke = false;
+			while (temp)
+			{
+				temp = false;
+				r = rand() % j;
+				temp = preferncechecker(SubClasses[r][c], SPreferences);
+				count++;
+
+				if (count > 10)
+				{
+					broke = true;
+					break;
+				}
+			}
+			if (!broke)
+				ClassSchedule = ClassSchedule + CSUFClasses[c] + "\n" + SubClasses[r][c] + "\n";
+			num++;
+		}
+		if (num == answer)
+			continue;
+		if (!Classtaken[9] && Classtaken[2])//CPSC332
+		{
+			c = 17;//CPSC332
+			j = 0;
+			while (SubClasses[j][c][0] != '~')
+				j++;
+			bool temp = true;
+			int count = 0;
+			bool broke = false;
+			while (temp)
+			{
+				temp = false;
+				r = rand() % j;
+				temp = preferncechecker(SubClasses[r][c], SPreferences);
+				count++;
+
+				if (count > 10)
+				{
+					broke = true;
+					break;
+				}
+			}
+			if (!broke)
+				ClassSchedule = ClassSchedule + CSUFClasses[c] + "\n" + SubClasses[r][c] + "\n";
+			num++;
+		}
+		if (num == answer)
+			continue;
+		if (!Classtaken[10] && Classtaken[5])//CPSC335
+		{
+			c = 18;//CPSC335
+			j = 0;
+			while (SubClasses[j][c][0] != '~')
+				j++;
+			bool temp = true;
+			int count = 0;
+			bool broke = false;
+			while (temp)
+			{
+				temp = false;
+				r = rand() % j;
+				temp = preferncechecker(SubClasses[r][c], SPreferences);
+				count++;
+
+				if (count > 10)
+				{
+					broke = true;
+					break;
+				}
+			}
+			if (!broke)
+				ClassSchedule = ClassSchedule + CSUFClasses[c] + "\n" + SubClasses[r][c] + "\n";
+			num++;
+		}
+		if (num == answer)
+			continue;
+		if (!Classtaken[11] && Classtaken[2])//CPSC351
+		{
+			c = 19;//CPSC351
+			j = 0;
+			while (SubClasses[j][c][0] != '~')
+				j++;
+			bool temp = true;
+			int count = 0;
+			bool broke = false;
+			while (temp)
+			{
+				temp = false;
+				r = rand() % j;
+				temp = preferncechecker(SubClasses[r][c], SPreferences);
+				count++;
+
+				if (count > 10)
+				{
+					broke = true;
+					break;
+				}
+			}
+			if (!broke)
+				ClassSchedule = ClassSchedule + CSUFClasses[c] + "\n" + SubClasses[r][c] + "\n";
+			num++;
+		}
+		if (num == answer)
+			continue;
+		if (!Classtaken[12] && Classtaken[5])//CPSC362
+		{
+			c = 21;//CPSC362
+			j = 0;
+			while (SubClasses[j][c][0] != '~')
+				j++;
+			bool temp = true;
+			int count = 0;
+			bool broke = false;
+			while (temp)
+			{
+				temp = false;
+				r = rand() % j;
+				temp = preferncechecker(SubClasses[r][c], SPreferences);
+				count++;
+
+				if (count > 10)
+				{
+					broke = true;
+					break;
+				}
+			}
+			if (!broke)
+				ClassSchedule = ClassSchedule + CSUFClasses[c] + "\n" + SubClasses[r][c] + "\n";
+			num++;
+		}
+		if (num == answer)
+			continue;
+		if (!Classtaken[13] && Classtaken[4])//CPSC440
+		{
+			c = 26;//CPSC440
+			j = 0;
+			while (SubClasses[j][c][0] != '~')
+				j++;
+			bool temp = true;
+			int count = 0;
+			bool broke = false;
+			while (temp)
+			{
+				temp = false;
+				r = rand() % j;
+				temp = preferncechecker(SubClasses[r][c], SPreferences);
+				count++;
+
+				if (count > 10)
+				{
+					broke = true;
+					break;
+				}
+			}
+			if (!broke)
+				ClassSchedule = ClassSchedule + CSUFClasses[c] + "\n" + SubClasses[r][c] + "\n";
+			num++;
+		}
+		if (num == answer)
+			continue;
+		if (!Classtaken[14] && Classtaken[11])//CPSC471
+		{
+			c = 33;//CPSC471
+			j = 0;
+			while (SubClasses[j][c][0] != '~')
+				j++;
+			bool temp = true;
+			int count = 0;
+			bool broke = false;
+			while (temp)
+			{
+				temp = false;
+				r = rand() % j;
+				temp = preferncechecker(SubClasses[r][c], SPreferences);
+				count++;
+
+				if (count > 10)
+				{
+					broke = true;
+					break;
+				}
+			}
+			if (!broke)
+				ClassSchedule = ClassSchedule + CSUFClasses[c] + "\n" + SubClasses[r][c] + "\n";
+			num++;
+		}
+		if (num == answer)
+			continue;
+		if (!Classtaken[15] && Classtaken[10] && Classtaken[20])//CPSC481
+		{
+			c = 35;//CPSC481
+			j = 0;
+			while (SubClasses[j][c][0] != '~')
+				j++;
+			bool temp = true;
+			int count = 0;
+			bool broke = false;
+			while (temp)
+			{
+				temp = false;
+				r = rand() % j;
+				temp = preferncechecker(SubClasses[r][c], SPreferences);
+				count++;
+
+				if (count > 10)
+				{
+					broke = true;
+					break;
+				}
+			}
+			if (!broke)
+				ClassSchedule = ClassSchedule + CSUFClasses[c] + "\n" + SubClasses[r][c] + "\n";
+			num++;
+		}
+		if (num == answer)
+			continue;
+		if (ClassSchedule.empty())
+		{
+			i--;
+			MutatePreferences(S);
+		}
+	}
+	cout << endl << "Class Schedule #5" << endl;
+	cout << ClassSchedule << endl;
+	cout << "Which Class Schedule do you like the best?(1-5) ";
+	int numb;
+	cin >> numb;
+	S.getSPreferences(SPreferences, numb-1);
+	S.setSPreferences(SPreferences, 0);
+	cout << "Do you want to stop now?(y/n) ";
+	string st;
+	cin >> st;
+	return st!="y";
 }
 void MutatePreferences(Student &S)
 {
 	bool SPreferences[10];
 	int r[5] = {0,0,0,0,0};
-	srand(time(NULL));
 	for (int i = 1; i < 5; i++)
 	{
 		S.getSPreferences(SPreferences, 0);
@@ -333,6 +1017,40 @@ void MutatePreferences(Student &S)
 		SPreferences[r[i]] = !SPreferences[r[i]];
 		S.setSPreferences(SPreferences, i);
 	}
+}
+bool preferncechecker(string SubClasses, bool SPreferences[10])
+{
+	int k = 0;
+	while (SubClasses[k] != '\t')
+		k++;
+	k++;
+	if (SubClasses[k] == 'M' && SPreferences[2] == 1)//no Mondays
+		return true;
+	if (SubClasses[k] == 'T' && SubClasses[k + 1] == 'u' && SPreferences[3] == 1)//no Tuesdays
+		return true;
+	if (SubClasses[k] == 'W' && SPreferences[4] == 1)//no Wednesdays
+		return true;
+	if (SubClasses[k] == 'T' && SubClasses[k + 1] == 'h' && SPreferences[5] == 1)//no Thursdays
+		return true;
+	if (SubClasses[k] == 'F' && SPreferences[6] == 1)//no Fridays
+		return true;
+	if (SubClasses[k] == 'S' && SubClasses[k + 1] == 'a' && SPreferences[7] == 1)//no Sat
+		return true;
+	if (SubClasses[k] == 'S' && SubClasses[k + 1] == 'u' && SPreferences[8] == 1)//no Sun
+		return true;
+	while (SubClasses[k] != ' ')
+		k++;
+	k++;
+	if ((SubClasses[k + 1] != '2' && (SubClasses[k + 4] != 'A' || SubClasses[k + 5] != 'A')) && SPreferences[0] == 1)//no mornings
+		return true;
+	if (((SubClasses[k] != '2'|| SubClasses[k] != '1' ) && (SubClasses[k + 4] != 'P' || SubClasses[k + 5] != 'P')) && SPreferences[1] == 1)//no Evenings
+		return true;
+	while (SubClasses[k] != '\t')
+		k++;
+	k++;
+	if (SubClasses[k] == 'I' && SPreferences[9] == 1)//no off campus
+		return true;
+	return false;
 }
 
 // Student functions

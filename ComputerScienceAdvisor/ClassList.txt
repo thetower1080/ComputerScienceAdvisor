@@ -1,26 +1,26 @@
 MATH 150A-Calculus I 
-01-DIS,MoTuWeFr,8:00AM-8:50AM,MH 480-Teaching Lab,Jennifer Gudgel
-03-DIS,MoWe,8:00AM-9:50AM,MH 480-Teaching Lab,Cherlyn Converse
-11-DIS,TuTh,10:00AM-11:50AM,MH 438-Lecture Room,Diana Pirraglia
-18-DIS,TuTh,1:00PM-2:50PM,MH 464-Lecture Room,Fatemeh Khatami		 	
-21-DIS,MoWe,3:00PM-4:50PM,MH 442-Lecture Room,Jeremy Wilson
-26-DIS,MoWe,5:30PM-7:20PM,MH 552-Lecture Room,Luis Ramirez
-85-DIS,TuTh,9:00AM-10:50AM,IRVC-109,Steve Alemansour
-
+01-DIS	MoTuWeFr 8:00AM-8:50AM	MH 480-Teaching Lab	Jennifer Gudgel
+03-DIS	MoWe 8:00AM-9:50AM	MH 480-Teaching Lab	Cherlyn Converse
+11-DIS	TuTh 10:00AM-11:50AM	MH 438-Lecture Room	Diana Pirraglia
+18-DIS	TuTh 1:00PM-2:50PM	MH 464-Lecture Room	Fatemeh Khatami		 	
+21-DIS	MoWe 3:00PM-4:50PM	MH 442-Lecture Room	Jeremy Wilson
+26-DIS	MoWe 5:30PM-7:20PM	MH 552-Lecture Room	Luis Ramirez
+85-DIS	TuTh 9:00AM-10:50AM	IRVC-109        	Steve Alemansour
+;
 MATH 150B-Calculus II 
-02-DIS	MoWeFr 8:00AM-8:50AM	Th 8:00AM-8:50AM	MH 491-Lecture Room	Paul Farnham
+02-DIS	MoWeFr 8:00AM-8:50AM	MH 491-Lecture Room	Paul Farnham
 07-DIS	MoWe 10:00AM-11:50AM	MH 457-Lecture Room	Matthew Rathbun
 08-DIS	TuTh 10:00AM-11:50AM	MH 476-Teaching Lab	Amanda Martinez
 16-DIS	TuTh 2:00PM-3:50PM	MH 438-Lecture Room	Wyatte Hooper
 18-DIS	TuTh 5:30PM-7:20PM	MH 285-Lecture Room	John Kwak	
-
+;
 MATH 270A-Mathematical Structures I 
 02-DIS	MoWe 1:00PM-2:15PM	MH 504-Lecture Room	Kimberly Norman
 03-DIS	TuTh 1:00PM-2:15PM	MH 404-Lecture Room	Eric Ratzlaff
 05-DIS	MoWe 4:00PM-5:15PM	MH 285-Lecture Room	Mary Gutaskus
 07-DIS	TuTh 4:00PM-5:15PM	MH 404-Lecture Room	Matthew Varney
 08-DIS	MoWe 5:30PM-6:45PM	MH 655-Lecture Room	Mary Gutaskus
-
+;
 MATH 270B-Mathematical Structures II 
 01-DIS	MoWeFr 8:00AM-8:50AM	MH 514-Lecture Room	Dao Vo
 02-DIS	TuTh 8:30AM-9:45AM	MH 512-Lecture Room	Dao Vo
@@ -28,30 +28,30 @@ MATH 270B-Mathematical Structures II
 04-DIS	TuTh 10:00AM-11:15AM	MH 491-Lecture Room	Nathaniel Hall
 05-DIS	TuTh 10:00AM-11:15AM	MH 412-Lecture Room	Dao Vo
 06-DIS	MoWe 11:30AM-12:45PM	MH 617-Lecture Room	Kimberly Norman
-85-DIS	MoWe 4:00PM-5:15PM	IRVC-210	Bora Olcken
-
+85-DIS	MoWe 4:00PM-5:15PM	IRVC-210        	Bora Olcken
+;
 MATH 338-Statistics Applied to Natural Sciences 
 01-DIS	MoWe 8:30AM-9:45AM	MH 416-Lecture Room	Roula Chawi
 02-ACT	MoWe 10:00AM-10:50AM	MH 044-Computer Lab	Roula Chawi	
 03-DIS	TuTh 8:30AM-9:45AM	MH 491-Lecture Room	Heejeong Lim
-04-ACT  TuTh 10:00AM-10:50AMMH 452-Computer LabHeejeong Lim
-05-DIS  Sa 9:00AM-11:45AMMH 457-Lecture RoomEdward Pineda
-06-ACT  Fr 5:30PM-7:15PMMH 044-Computer LabEdward Pineda
-
+04-ACT	TuTh 10:00AM-10:50AM	MH 452-Computer Lab	Heejeong Lim
+05-DIS	Sa 9:00AM-11:45AM	MH 457-Lecture Room	Edward Pineda
+06-ACT	Fr 5:30PM-7:15PM	MH 044-Computer Lab	Edward Pineda
+;
 CPSC  120-Introduction to Programming
-01-LEC   Tu 11:30AM-12:45PM    E 202-Lecture Room    Sara Ghadami
-02-ACT   Th 8:30AM-11:15AM    CS 104-Teaching Lab   Sara Ghadami
-03-LEC  Tu 11:30AM-12:45PM    E 202-Lecture Room    Sara Ghadami
-04-ACT  Tu 8:30AM-11:15AM     CS 104-Teaching Lab   Sara Ghadami
-05-LEC  Tu 5:30PM-6:45PM      CS 408-Teaching Lab   Michael Shafae
-06-ACT  Th 5:00PM-7:45PM      CS 408-Teaching Lab   Michael Shafae
-07-LEC  Mo 10:00AM-11:15AM    E 202-Lecture Room    Kevin Wortman
-08-ACT  We 8:30AM-11:15AM     CS 104-Teaching Lab   Kevin Wortman
-09-LEC  Mo 2:30PM-3:45PM      E 202-Lecture Room    Kevin Wortman
+01-LEC	Tu 11:30AM-12:45PM	E 202-Lecture Room	Sara Ghadami
+02-ACT	Th 8:30AM-11:15AM	CS 104-Teaching Lab	Sara Ghadami
+03-LEC	Tu 11:30AM-12:45PM	E 202-Lecture Room	Sara Ghadami
+04-ACT	Tu 8:30AM-11:15AM	CS 104-Teaching Lab	Sara Ghadami
+05-LEC	Tu 5:30PM-6:45PM	CS 408-Teaching Lab	Michael Shafae
+06-ACT	Th 5:00PM-7:45PM	CS 408-Teaching Lab	Michael Shafae
+07-LEC	Mo 10:00AM-11:15AM	E 202-Lecture Room	Kevin Wortman
+08-ACT	We 8:30AM-11:15AM	CS 104-Teaching Lab	Kevin Wortman
+09-LEC	Mo 2:30PM-3:45PM	E 202-Lecture Room	Kevin Wortman
 10-ACT	We 2:30PM-5:15PM	CS 104-Teaching Lab	Kevin Wortman
 11-LEC	Mo 2:30PM-3:45PM	E 202-Lecture Room	Kevin Wortman
 12-ACT	Fr 1:00PM-3:45PM	CS 101-Teaching Lab	Kevin Wortman
-
+;
 CPSC  121-Object-Oriented Programming
 01-LEC	TuTh 1:00PM-1:50PM	E 202-Lecture Room	Michael Shafae
 02-ACT	Tu 2:00PM-3:50PM	CS 104-Teaching Lab	Michael Shafae
@@ -73,7 +73,7 @@ CPSC  121-Object-Oriented Programming
 18-ACT	Mo 12:30PM-2:20PM	CS 300-Teaching Lab	Bijan Hamidi
 19-LEC	MoWe 11:30AM-12:20PM	E 202-Lecture Room	Bijan Hamidi
 20-ACT	We 12:30PM-2:20PM	CS 300-Teaching Lab	Bijan Hamidi
-
+;
 CPSC  131-Data Structures
 01-DIS	TuTh 1:00PM-2:15PM	CS 110B-Lecture Room	Thomas Bettens
 02-DIS	TuTh 5:30PM-6:45PM	E 202-Lecture Room	Shilpa Lakhanpal
@@ -81,20 +81,20 @@ CPSC  131-Data Structures
 04-DIS	TuTh 11:30AM-12:45PM	CS 110B-Lecture Room	Mehdi Peiravi
 05-DIS	MoWe 1:00PM-2:15PM	CS 101-Teaching Lab	Eric May
 06-DIS	TuTh 2:30PM-3:45PM	CS 110A-Lecture Room	Shilpa Lakhanpal
-08-DISMoWe 5:30PM-6:45PMEC 007-Lecture RoomThomas Bettens
-
+08-DIS	MoWe 5:30PM-6:45PM	EC 007-Lecture Room	Thomas Bettens
+;
 CPSC  223C-C Programming CPSC 223C-C Programming
-01-DIS Mo 2:00PM-3:50PM CS 408-Teaching Lab William McCarthy
-02-ACT We 2:00PM-3:50PM CS 408-Teaching Lab William McCarthy
-03-DIS Mo 4:00PM-5:50PM CS 101-Teaching Lab William McCarthy
-04-ACT We 4:00PM-5:50PM CS 101-Teaching Lab William McCarthy
-
+01-DIS	Mo 2:00PM-3:50PM 	CS 408-Teaching Lab 	William McCarthy
+02-ACT	We 2:00PM-3:50PM 	CS 408-Teaching Lab 	William McCarthy
+03-DIS	Mo 4:00PM-5:50PM 	CS 101-Teaching Lab 	William McCarthy
+04-ACT	We 4:00PM-5:50PM 	CS 101-Teaching Lab 	William McCarthy
+;
 CPSC  223P-Python Programming
-01-DIS  Mo 6:00PM-7:50PM	CS 300-Teaching Lab	Tseng-Ching Shen
+01-DIS	Mo 6:00PM-7:50PM	CS 300-Teaching Lab	Tseng-Ching Shen
 02-LAB	We 6:00PM-7:50PM	CS 300-Teaching Lab	Tseng-Ching Shen
 03-DIS	Tu 7:00PM-8:50PM	CS 300-Teaching Lab	Tseng-Ching Shen
 04-LAB	Th 7:00PM-8:50PM	CS 300-Teaching Lab	Tseng-Ching Shen
-
+;
 CPSC  240-Computer Organization and Assembly Language
 01-DIS	Tu 12:00PM-1:50PM	CS 104-Teaching Lab	Floyd Holliday
 02-ACT	Th 12:00PM-1:50PM	CS 104-Teaching Lab	Floyd Holliday
@@ -106,56 +106,56 @@ CPSC  240-Computer Organization and Assembly Language
 08-ACT	We 10:00AM-11:50AM	CS 101-Teaching Lab	Floyd Holliday
 09-DIS	Tu 11:30AM-1:20PM	CS 101-Teaching Lab	Yu Bai
 10-ACT	Th 11:30AM-1:20PM	CS 101-Teaching Lab	Yu Bai
-
+;
 CPSC  253U-Workshop in UNIX
 01-ACT	Fr 10:00AM-11:50AM	CS 104-Teaching Lab	Floyd Holliday
-
+;
 CPSC 254-Software Development with     Source Systems
 01-DIS	Tu 8:00PM-9:50PM	CS 408-Teaching Lab	David Heckathorn
 02-ACT	Th 8:00PM-9:50PM	CS 408-Teaching Lab	David Heckathorn
 03-DIS	Tu 9:30AM-11:20AM	CS 101-Teaching Lab	Floyd Holliday
 04-ACT	Th 9:30AM-11:20AM	CS 101-Teaching Lab	Floyd Holliday
-
+;
 CPSC  301-Programming Lab Practicum
 01-LAB	TuTh 10:00AM-12:50PM	CS 300-Teaching Lab	Chary Vielma
 02-LAB	TuTh 7:00PM-9:50PM	CS 104-Teaching Lab	Shawn Graham
 03-LAB	TuTh 2:30PM-5:20PM	CS 300-Teaching Lab	Shawn Graham
-
+;
 CPSC 311-Technical Writing for Computer Science
 01-DIS	MoWe 2:30PM-3:45PM	CS 110B-Lecture Room	Patricia Parral
 02-DIS	MoWe 4:00PM-5:15PM	CS 110A-Lecture Room	Eric May
 03-DIS	TuTh 5:30PM-6:45PM	CS 102B-Lecture Room	Steven Cooper
 04-DIS	TuTh 4:00PM-5:15PM	CS 110A-Lecture Room	Bach Ho
-
+;
 CPSC 315-Professional Ethics in Computing
 01-DIS	We 7:00PM-9:45PM	CS 408-Teaching Lab	Pouya Radfar
 02-DIS	Fr 1:00PM-3:45PM	EC 109-Lecture Room	Lidia Morrison
 03-DIS	TuTh 11:30AM-12:45PM	KHS 270-Lecture Room	David Heckathorn
 04-DIS	TuTh 4:00PM-5:15PM	E 202-Lecture Room	Beth Harnick-Shapiro
-80-DIS	Sa 9:00AM-11:45AM	 IRVC-108   Pouya Radfar
-
+80-DIS	Sa 9:00AM-11:45AM	 IRVC-108         	Pouya Radfar
+;
 CPSC 323-Compilers and Languages
 01-DIS	MoWe 1:00PM-2:15PM	CS 104-Teaching Lab	Anthony Le
 02-DIS	TuTh 10:00AM-11:15AM	E 202-Lecture Room	Anthony Le
 03-DIS	TuTh 5:30PM-6:45PM	EC 109-Lecture Room	Anthony Le
 04-DIS	MoWe 4:00PM-5:15PM	CS 110B-Lecture Room	Anthony Le
-80-DIS	Tu 7:00PM-9:45PM	IRVC-108	Nathan Reed
-
+80-DIS	Tu 7:00PM-9:45PM	IRVC-108        	Nathan Reed
+;
 CPSC 332-File Structures and Database Systems
 01-DIS	MoWe 4:00PM-5:15PM	E 202-Lecture Room	Shawn Wang
 02-DIS	TuTh 5:30PM-6:45PM	CS 102A-Lecture Room	Kanika Sood
 03-DIS	MoWe 2:30PM-3:45PM	EC 109-Lecture Room	Shawn Wang14010
 04-DIS	TuTh 4:00PM-5:15PM	CS 104-Teaching Lab	Kanika Sood
 05-DIS	Mo 7:00PM-9:45PM	EC 109-Lecture Room	Kanika Sood
-80-DIS	Mo 7:00PM-9:45PM	IRVC-108	Nathan Reed
-
+80-DIS	Mo 7:00PM-9:45PM	IRVC-108        	Nathan Reed
+;
 CPSC 335-Algorithm Engineering
 01-DIS	MoWe 1:00PM-2:15PM	E 202-Lecture Room	Doina Bein
 02-DIS	TuTh 7:00PM-8:15PM	CS 110B-Lecture Room	Charles Siska
 03-DIS	TuTh 4:00PM-5:15PM	CS 110B-Lecture Room	Charles Siska
 04-DIS	Fr 1:00PM-3:45PM	CS 408-Teaching Lab	Alexander Gauf
 05-DIS	MoWe 4:00PM-5:15PM	CS 102A-Lecture Room	Doina Bein
-
+;
 CPSC 351-Operating Systems Concepts
 01-DIS	MoWe 7:00PM-8:15PM	CS 102A-Lecture Room	Swayam Pati
 02-DIS	TuTh 2:30PM-3:45PM	EC 109-Lecture Room	Yun Tian
@@ -163,13 +163,13 @@ CPSC 351-Operating Systems Concepts
 04-DIS	MoWe 8:30PM-9:45PM	E 202-Lecture Room	Swayam Pati
 05-DIS	Sa 9:00AM-11:45AM	CS 408-Teaching Lab	Natasha Anderson
 06-DIS	Tu 7:00PM-9:45PM	CS 102A-Lecture Room	Yaping XuC
-
+;
 CPSC 353-Introduction to Computer Security
 01-DIS	TuTh 7:00PM-8:15PM	E 202-Lecture Room	Kenneth Kung
 02-DIS	TuTh 8:30PM-9:45PM	E 202-Lecture Room	Talisa Terrell
 03-DIS	MoWe 1:00PM-2:15PM	EC 109-Lecture Room	David Heckathorn
 04-DIS	MoWe 5:30PM-6:45PM	CS 102A-Lecture Room	David Heckathorn
-
+;
 CPSC 362-Foundations of Software Engineering
 01-DIS	Tu 1:00PM-2:50PM	CS 408-Teaching Lab	Sara Ghadami
 02-ACT	Th 1:00PM-2:50PM	CS 408-Teaching Lab	Sara Ghadami
@@ -181,33 +181,33 @@ CPSC 362-Foundations of Software Engineering
 08-ACT	Th 3:00PM-4:50PM	CS 408-Teaching Lab	Sara Ghadami
 09-DIS	Mo 8:00AM-9:50AM	CS 101-Teaching Lab	Daniel Walsh
 10-ACT	We 8:00AM-9:50AM	CS 101-Teaching Lab	Daniel Walsh
-
+;
 CPSC 386-Introduction to Game Design and Production
 01-DIS	MoWe 11:30AM-12:45PM	EC 109-Lecture Room	William McCarthy
-
+;
 CPSC 411-Mobile Device Application Programming
 01-DIS	We 7:00PM-9:45PM	EC 109-Lecture Room	Kenytt Avery
 02-DIS	Mo 7:00PM-9:45PM	EC 122-Lecture Room	William McCarthy
-
+;
 CPSC 431-Database and Applications
 01-DIS	MoWe 5:30PM-6:45PM	CS 104-Teaching Lab	Mark Hauchwitz
-
+;
 CPSC 439-Theory of Computation
-01-DIS	TuTh 8:30AM-9:45AM	EC 109-Lecture Room
-
+01-DIS	TuTh 8:30AM-9:45AM	EC 109-Lecture Room	Mark Hauchwitz
+;
 CPSC 440-Computer System Architecture
 01-DIS	MoWe 10:00AM-11:15AM	CS 300-Teaching Lab	Ning Chen
 02-DIS	MoWe 5:30PM-6:45PM	E 202-Lecture Room	Yoonsuk Choi
 03-DIS	Sa 1:00PM-3:45PM	CS 104-Teaching Lab	Mike Peralta
 04-DIS	TuTh 1:00PM-2:15PM	CS 102B-Lecture Room	Shawn Wang
 05-DIS	Th 7:00PM-9:45PM	CS 110A-Lecture Room	Yoonsuk Choi
-
+;
 CPSC 452-Cryptography
 01-DIS	Mo 7:00PM-9:45PM	CS 104-Teaching Lab	Mikhail Gofman
-
+;
 CPSC 456-Network Security Fundamentals
 01-DIS	Fr 9:00AM-11:45AM	CS 101-Teaching Lab	Hernan Manabat
-
+;
 CPSC 462-Software Design
 01-DIS	Mo 7:00PM-8:50PM	CS 101-Teaching Lab	Thomas Bettens
 02-ACT	We 7:00PM-8:50PM	CS 101-Teaching Lab	Thomas Bettens
@@ -215,36 +215,37 @@ CPSC 462-Software Design
 04-ACT	Sa 11:00AM-12:50PM	CS 101-Teaching Lab	Lidia Morrison
 05-DIS	Tu 6:00PM-7:50PM	CS 101-Teaching Lab	Thomas Bettens
 06-ACT	Th 6:00PM-7:50PM	CS 101-Teaching Lab	Thomas Bettens
-
+;
 CPSC 463-Software Testing
 01-DIS	Fr 5:30PM-8:15PM	EC 109-Lecture Room	Daniel Rodgers
-
+;
 CPSC 464-Software Architecture
 01-DIS	Th 7:00PM-9:45PM	CS 102B-Lecture Room	Son Nguyen
-
+;
 CPSC 466-Software Process
 01-DIS	Tu 7:00PM-9:45PM	CS 102B-Lecture Room	Joseph Martinazzi
-
+;
 CPSC 471-Computer Communications
 01-DIS	MoWe 5:30PM-6:45PM	CS 102B-Lecture Room	Wei-Cheng Peng
 02-DIS	TuTh 11:30AM-12:45PM	EC 109-Lecture Room	Yun Tian
 03-DIS	TuTh 10:00AM-11:15AM	EC 109-Lecture Room	Yun Tian
 04-DIS	Fr 9:00AM-11:45AM	EC 109-Lecture Room	Justin Chin
 05-DIS	TuTh 4:00PM-5:15PM	CS 102A-Lecture Room	David Heckathorn
-
+;
 CPSC 479-Introduction to High Performance Computing
 01-LEC	MoWe 11:30AM-12:45PM	CS 408-Teaching Lab	Doina Bein
-
+;
 CPSC 481-Artificial Intelligence
 01-DIS	MoWe 4:00PM-5:15PM	CS 102B-Lecture Room	Wenlin Han
 02-DIS	MoWe 2:30PM-3:45PM	CS 110A-Lecture Room	Wenlin Han
 03-DIS	TuTh 5:30PM-6:45PM	CS 110A-Lecture Room	Charles Siska
 04-DIS	Fr 1:00PM-3:45PM	E 202-Lecture Room	Wenlin Han
 05-DIS	TuTh 2:30PM-3:45PM	CS 102B-Lecture Room	Charles Siska
-
+;
 CPSC 483-Introduction to Machine Learning
 01-DIS	Th 7:00PM-9:45PM	EC 109-Lecture Room	Kenytt Avery
 02-DIS	Fr 7:00PM-9:45PM	E 202-Lecture Room	Syeda Akter
-
+;
 CPSC 484-Principles of Computer Graphics
 01-DIS	MoWe 11:30AM-12:45PM	CS 104-Teaching Lab	Kevin Wortman
+;
