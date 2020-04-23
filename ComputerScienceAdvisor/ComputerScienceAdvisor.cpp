@@ -61,7 +61,6 @@ int main()
 	{
 		InputId(S);
 		infile = LoadFile(S);
-		cout << endl<< infile << endl;
 		if (!infile)
 			newst = NewFile(S);
 		else 
@@ -70,7 +69,6 @@ int main()
 	bool Repeat = true;
 	while (Repeat)
 		Repeat = NewClassSchedule(S);
-	cout << endl << infile << endl;
 	if (infile)
 		SaveOldFile(S);
 	else 
@@ -115,14 +113,14 @@ bool LoadFile(Student& S)// will return true if name is found, else false
 		while (line[i] != ',')
 		{
 			f = true;
-			if (j >= Fname.length()||Fname[j] != line[i])
+			if (j >= Fname.length() || Fname[j] != line[i])
 			{
 				f = false;
 				break;
 			}
 			i++;
 			j++;
-			
+
 		}
 		if (!f)
 			continue;
@@ -131,7 +129,7 @@ bool LoadFile(Student& S)// will return true if name is found, else false
 		while (line[i] != ',')
 		{
 			f = true;
-			if (j >= Lname.length()||Lname[j] != line[i])
+			if (j >= Lname.length() || Lname[j] != line[i])
 			{
 				f = false;
 				break;
@@ -146,7 +144,7 @@ bool LoadFile(Student& S)// will return true if name is found, else false
 		while (line[i] != ',')
 		{
 			f = true;
-			if (j >= CWID.length()||CWID[j] != line[i])
+			if (j >= CWID.length() || CWID[j] != line[i])
 			{
 				f = false;
 				break;
@@ -157,12 +155,19 @@ bool LoadFile(Student& S)// will return true if name is found, else false
 		if (!f)
 			continue;
 		i++;
-		for (int j = i; j < 10; j++)
-			SPreferences[j - i] = line[j];
+		for (int j = 0; j < 10; j++)
+		{
+			SPreferences[j] = (line[i + j] == '1');
+			cout << SPreferences[j] << endl;
+			i++;
+		}
 		S.setSPreferences(SPreferences, 0);
-		i += 11;
-		for (int j = i; j < 26; j++)
-			Classtaken[j - i] = line[j];
+		i += 10;
+		for (int j = 0; j < 26; j++)
+		{
+			Classtaken[j] = (line[i + j] == '1');
+			i++;
+		}
 		S.setClasstaken(Classtaken);
 		check = true;
 		break;
@@ -176,7 +181,7 @@ bool NewFile(Student &S)
 	Fname = S.getFname();
 	Lname = S.getLname();
 	CWID = S.getCWID();
-	cout << "Hello " << Fname << " " << Lname <<endl  << "I can't find your information are you a new student?(y/n)"<<endl;
+	cout <<endl<< "Hello " << Fname << " " << Lname <<endl  << "I can't find your information are you a new student?(y/n)"<<endl;
 	cin >> answer;
 	if (answer[0] == 'y')
 	{
@@ -185,7 +190,7 @@ bool NewFile(Student &S)
 	}
 	else
 	{
-		cout << "You may have enter your information incorectly. Please try again." << endl;
+		cout << endl << "You may have enter your information incorectly. Please try again." << endl;
 		return true;
 	}
 	
@@ -213,7 +218,7 @@ void SaveNewFile(Student& S)
 
 void SaveOldFile(Student& S)
 {
-	string totalfile,line,inputline;
+	string totalfile, line, inputline;
 	string Fname, Lname, CWID;
 	bool check;
 	Fname = S.getFname();
@@ -223,17 +228,24 @@ void SaveOldFile(Student& S)
 	S.getSPreferences(SPreferences, 0);
 	bool Classtaken[26];
 	S.getClasstaken(Classtaken);
-	inputline = Fname + "," + Lname + "," + CWID + ",";
+	inputline = Fname + "," + Lname + "," + CWID;
 	for (int i = 0; i < 10; i++)
-		inputline += SPreferences[i];
-	inputline += ",";
+	{
+		cout << SPreferences[i] << endl;
+	if (SPreferences[i])
+		inputline += ",1";
+	else
+		inputline += ",0";
+}
 	for (int i = 0; i < 26; i++)
-		inputline += Classtaken[i];
-	
+		if (Classtaken[i])
+			inputline = inputline + ",1";
+		else
+			inputline = inputline + ",0";
 	ifstream file;
 	file.open("Studentinfo.txt");
 	getline(file, line);
-	int i=0;
+	int i = 0;
 	while (line[i] != ',')
 	{
 		i++;
@@ -249,7 +261,7 @@ void SaveOldFile(Student& S)
 	while (line[i] != ',')
 	{
 		check = true;
-		if(j >= CWID.length()||CWID[j] != line[i])
+		if (j >= CWID.length() || CWID[j] != line[i])
 		{
 			check = false;
 			break;
@@ -258,9 +270,15 @@ void SaveOldFile(Student& S)
 		j++;
 	}
 	if (check)
-		totalfile = line;
-	else
+	{
+
 		totalfile = inputline;
+	}
+	else
+	{
+		totalfile = line;
+	}
+	
 	while (getline(file, line))
 	{
 		i = 0;
@@ -282,14 +300,13 @@ void SaveOldFile(Student& S)
 			i++;
 			j++;
 		}
-		totalfile += "/n";
+		totalfile += "\n";
 		if (check)
-			totalfile += line;
-		else
 			totalfile += inputline;
+		else
+			totalfile += line;
 	}
 	file.close();
-	cout <<endl<< totalfile<<endl;
 	ofstream outfile;
 	outfile.open("Studentinfo.txt", ios::trunc);
 	outfile << totalfile;
@@ -338,13 +355,21 @@ string Student::getCWID()
 }
 void Student::setSPreferences(bool SP[10], int i)
 {
+	cout << "setSPreferences" << endl;
 	for (int j = 0; j < 10; j++)
+	{
+		cout << SP[i] << endl;
 		SPreferences[i][j] = SP[j];
+	}
 }
 void Student::getSPreferences(bool SP[10], int i)
 {
+	cout << "getSPreferences" << endl;
 	for (int j = 0; j < 10; j++)
+	{
+		cout << SP[i] << endl;
 		SP[j] = SPreferences[i][j];
+	}
 }
 void Student::setClasstaken(bool CT[26])
 {
