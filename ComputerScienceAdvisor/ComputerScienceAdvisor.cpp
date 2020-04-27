@@ -21,7 +21,7 @@ using namespace std;
 class Student {
 	string Fname, Lname, CWID;
 	bool SPreferences[5][10];
-	bool Classtaken[26];
+	bool Classtaken[36];
 
 public:
 	void setname(string, string);
@@ -32,8 +32,8 @@ public:
 	void setSPreferences(bool[10], int);
 	void getSPreferences(bool[10], int);
 	void setupbools();
-	void setClasstaken(bool[26]);
-	void getClasstaken(bool[26]);
+	void setClasstaken(bool[36]);
+	void getClasstaken(bool[36]);
 };
 
 void Welcome();
@@ -42,7 +42,7 @@ bool LoadFile(Student&);
 bool NewFile(Student&);
 void SaveNewFile(Student&);
 void SaveOldFile(Student&);
-bool NewClassSchedule(Student&);
+bool NewClassSchedule(Student&,int);
 void MutatePreferences(Student&);
 bool preferncechecker(string, bool[10]);
 
@@ -66,8 +66,11 @@ int main()
 			newst = false;
 	}
 	bool Repeat = true;
+	int answer = 0;
+	cout << endl << "How many classes do you want to take?(1-6) ";
+	cin >> answer;
 	while (Repeat)
-		Repeat = NewClassSchedule(S);
+		Repeat = NewClassSchedule(S, answer);
 	if (infile)
 		SaveOldFile(S);
 	else 
@@ -97,7 +100,7 @@ bool LoadFile(Student& S)// will return true if name is found, else false
 	bool check=false;
 	bool f = false;
 	bool SPreferences[10];
-	bool Classtaken[26];
+	bool Classtaken[36];
 	Fname = S.getFname();
 	Lname = S.getLname();
 	CWID = S.getCWID();
@@ -161,7 +164,7 @@ bool LoadFile(Student& S)// will return true if name is found, else false
 		}
 		S.setSPreferences(SPreferences, 0);
 		i += 10;
-		for (int j = 0; j < 26; j++)
+		for (int j = 0; j < 36; j++)
 		{
 			Classtaken[j] = (line[i + j] == '1');
 			i++;
@@ -201,14 +204,14 @@ void SaveNewFile(Student& S)
 	CWID = S.getCWID();
 	bool SPreferences[10];
 	S.getSPreferences(SPreferences, 0);
-	bool Classtaken[26];
+	bool Classtaken[36];
 	S.getClasstaken(Classtaken);
 	ofstream outfile;
 	outfile.open("Studentinfo.txt", ios::app); // append instead of overwrite
 	outfile << Fname<<","<<Lname<<","<<CWID;
 	for (int i = 0; i < 10; i++)
 		outfile << "," << SPreferences[i];
-	for (int i = 0; i < 26; i++)
+	for (int i = 0; i < 36; i++)
 		outfile << "," << Classtaken[i];
 	outfile << endl;
 	outfile.close();
@@ -224,7 +227,7 @@ void SaveOldFile(Student& S)
 	CWID = S.getCWID();
 	bool SPreferences[10];
 	S.getSPreferences(SPreferences, 0);
-	bool Classtaken[26];
+	bool Classtaken[36];
 	S.getClasstaken(Classtaken);
 	inputline = Fname + "," + Lname + "," + CWID;
 	for (int i = 0; i < 10; i++)
@@ -234,7 +237,7 @@ void SaveOldFile(Student& S)
 	else
 		inputline += ",0";
 }
-	for (int i = 0; i < 26; i++)
+	for (int i = 0; i < 36; i++)
 		if (Classtaken[i])
 			inputline = inputline + ",1";
 		else
@@ -309,18 +312,20 @@ void SaveOldFile(Student& S)
 	outfile << totalfile;
 	file.close();
 }
-bool NewClassSchedule(Student& S)//will return true if the program needs to repeat
+bool NewClassSchedule(Student& S,int answer)//will return true if the program needs to repeat
 {
 	MutatePreferences(S);
-	bool SPreferences[10], Classtaken[26];
+	bool SPreferences[10], Classtaken[36];
 	string classtime[2][6] = {"","", "", "", "", "", "", "", "", "", 
 	"", ""}, tempclasstimestart = "", tempclasstimeend = "";
 	string classdate[4][6] = { "","", "", "", "", "","","", "", "", "", "","","", "", "", "", "", "", "", "", "",
 	"", "" }, tempclassdate[4] = { "","","","" };
 	S.getClasstaken(Classtaken);
-	int num = 0, answer = 0, r = 0, c = 0;
-	cout << endl << "How many classes do you want to take?(1-6) ";
-	cin >> answer;
+	int electives = 0;
+	for (int q = 21; q < 36; q++)
+		if (Classtaken[q])
+			electives++;
+	int num = 0, r = 0, c = 0;
 	string ClassSchedule = "";
 	string CSUFClasses[40], SubClasses[21][40];
 	int i = 0, j = 0;
@@ -2480,6 +2485,1463 @@ bool NewClassSchedule(Student& S)//will return true if the program needs to repe
 		}
 		if (num == answer)
 			continue;
+		int tempelectives = electives;
+		if (tempelectives < 6 && !Classtaken[21] && Classtaken[2])//CPSC254
+		{
+			c = 12;//CPSC254
+			j = 0;
+			while (SubClasses[j][c][0] != '~')
+				j++;
+			bool temp = true;
+			int count = 0;
+			bool broke = false;
+			while (temp)
+			{
+				temp = false;
+				r = rand() % j;
+				temp = preferncechecker(SubClasses[r][c], SPreferences);
+				int k = 0;
+				while (SubClasses[r][c][k] != '\t')
+					k++;
+				k++;
+				int d = 0;
+				tempclassdate[0] = "";
+				tempclassdate[1] = "";
+				tempclassdate[2] = "";
+				tempclassdate[3] = "";
+				while (SubClasses[r][c][k] != ' ')
+				{
+					tempclassdate[d / 2] += SubClasses[r][c][k];
+					d++;
+					k++;
+				}
+				k++;
+				tempclasstimestart = "";
+				while (SubClasses[r][c][k] != '-')
+				{
+					tempclasstimestart += SubClasses[r][c][k];
+					k++;
+				}
+				k++;
+				tempclasstimeend = "";
+				while (SubClasses[r][c][k] != '\t')
+				{
+					tempclasstimeend += SubClasses[r][c][k];
+					k++;
+				}
+				for (int m = 0; m < 6; m++)
+				{
+					if (classtime[0][m].empty())
+					{
+						break;
+					}
+					bool trdate = false;
+					for (int g = 0; g < 3; g++)
+					{
+						if (classdate[g][m].empty())
+							break;
+						if (classdate[g][m] == tempclassdate[g])
+						{
+							trdate = true;
+						}
+					}
+					if (trdate) {
+						if (classtime[0][m] == tempclasstimestart)
+							temp = true;
+						else if (classtime[1][m] == tempclasstimeend)
+							temp = true;
+						else if (tempclasstimestart > classtime[0][m] && tempclasstimestart < classtime[1][m])
+							temp = true;
+						else if (tempclasstimeend > classtime[0][m] && tempclasstimeend < classtime[1][m])
+							temp = true;
+					}
+				}
+				k++;
+				count++;
+				if (count > 100)
+				{
+					broke = true;
+					break;
+				}
+			}
+			if (!broke)
+			{
+				tempelectives++;
+				ClassSchedule = ClassSchedule + CSUFClasses[c] + "\n" + SubClasses[r][c] + "\n";
+				for (int g = 0; g < 3; g++)
+					classdate[g][num] = tempclassdate[g];
+				classtime[0][num] = tempclasstimestart;
+				classtime[1][num] = tempclasstimeend;
+			}
+			for (int g = 0; g < 3; g++)
+			{
+				tempclassdate[g] = "";
+			}
+			tempclasstimestart = "";
+			tempclasstimeend = "";
+			num++;
+		}
+		if (num == answer)
+			continue;
+		if (tempelectives < 6 && !Classtaken[22] && Classtaken[2])//CPSC353
+		{
+			c = 20;//CPSC353
+			j = 0;
+			while (SubClasses[j][c][0] != '~')
+				j++;
+			bool temp = true;
+			int count = 0;
+			bool broke = false;
+			while (temp)
+			{
+				temp = false;
+				r = rand() % j;
+				temp = preferncechecker(SubClasses[r][c], SPreferences);
+				int k = 0;
+				while (SubClasses[r][c][k] != '\t')
+					k++;
+				k++;
+				int d = 0;
+				tempclassdate[0] = "";
+				tempclassdate[1] = "";
+				tempclassdate[2] = "";
+				tempclassdate[3] = "";
+				while (SubClasses[r][c][k] != ' ')
+				{
+					tempclassdate[d / 2] += SubClasses[r][c][k];
+					d++;
+					k++;
+				}
+				k++;
+				tempclasstimestart = "";
+				while (SubClasses[r][c][k] != '-')
+				{
+					tempclasstimestart += SubClasses[r][c][k];
+					k++;
+				}
+				k++;
+				tempclasstimeend = "";
+				while (SubClasses[r][c][k] != '\t')
+				{
+					tempclasstimeend += SubClasses[r][c][k];
+					k++;
+				}
+				for (int m = 0; m < 6; m++)
+				{
+					if (classtime[0][m].empty())
+					{
+						break;
+					}
+					bool trdate = false;
+					for (int g = 0; g < 3; g++)
+					{
+						if (classdate[g][m].empty())
+							break;
+						if (classdate[g][m] == tempclassdate[g])
+						{
+							trdate = true;
+						}
+					}
+					if (trdate) {
+						if (classtime[0][m] == tempclasstimestart)
+							temp = true;
+						else if (classtime[1][m] == tempclasstimeend)
+							temp = true;
+						else if (tempclasstimestart > classtime[0][m] && tempclasstimestart < classtime[1][m])
+							temp = true;
+						else if (tempclasstimeend > classtime[0][m] && tempclasstimeend < classtime[1][m])
+							temp = true;
+					}
+				}
+				k++;
+				count++;
+				if (count > 100)
+				{
+					broke = true;
+					break;
+				}
+			}
+			if (!broke)
+			{
+				tempelectives++;
+				ClassSchedule = ClassSchedule + CSUFClasses[c] + "\n" + SubClasses[r][c] + "\n";
+				for (int g = 0; g < 3; g++)
+					classdate[g][num] = tempclassdate[g];
+				classtime[0][num] = tempclasstimestart;
+				classtime[1][num] = tempclasstimeend;
+			}
+			for (int g = 0; g < 3; g++)
+			{
+				tempclassdate[g] = "";
+			}
+			tempclasstimestart = "";
+			tempclasstimeend = "";
+			num++;
+		}
+		if (num == answer)
+			continue;
+		if (tempelectives < 6 && !Classtaken[23] && Classtaken[2])//CPSC386
+		{
+			c = 22;//CPSC386
+			j = 0;
+			while (SubClasses[j][c][0] != '~')
+				j++;
+			bool temp = true;
+			int count = 0;
+			bool broke = false;
+			while (temp)
+			{
+				temp = false;
+				r = rand() % j;
+				temp = preferncechecker(SubClasses[r][c], SPreferences);
+				int k = 0;
+				while (SubClasses[r][c][k] != '\t')
+					k++;
+				k++;
+				int d = 0;
+				tempclassdate[0] = "";
+				tempclassdate[1] = "";
+				tempclassdate[2] = "";
+				tempclassdate[3] = "";
+				while (SubClasses[r][c][k] != ' ')
+				{
+					tempclassdate[d / 2] += SubClasses[r][c][k];
+					d++;
+					k++;
+				}
+				k++;
+				tempclasstimestart = "";
+				while (SubClasses[r][c][k] != '-')
+				{
+					tempclasstimestart += SubClasses[r][c][k];
+					k++;
+				}
+				k++;
+				tempclasstimeend = "";
+				while (SubClasses[r][c][k] != '\t')
+				{
+					tempclasstimeend += SubClasses[r][c][k];
+					k++;
+				}
+				for (int m = 0; m < 6; m++)
+				{
+					if (classtime[0][m].empty())
+					{
+						break;
+					}
+					bool trdate = false;
+					for (int g = 0; g < 3; g++)
+					{
+						if (classdate[g][m].empty())
+							break;
+						if (classdate[g][m] == tempclassdate[g])
+						{
+							trdate = true;
+						}
+					}
+					if (trdate) {
+						if (classtime[0][m] == tempclasstimestart)
+							temp = true;
+						else if (classtime[1][m] == tempclasstimeend)
+							temp = true;
+						else if (tempclasstimestart > classtime[0][m] && tempclasstimestart < classtime[1][m])
+							temp = true;
+						else if (tempclasstimeend > classtime[0][m] && tempclasstimeend < classtime[1][m])
+							temp = true;
+					}
+				}
+				k++;
+				count++;
+				if (count > 100)
+				{
+					broke = true;
+					break;
+				}
+			}
+			if (!broke)
+			{
+				tempelectives++;
+				ClassSchedule = ClassSchedule + CSUFClasses[c] + "\n" + SubClasses[r][c] + "\n";
+				for (int g = 0; g < 3; g++)
+					classdate[g][num] = tempclassdate[g];
+				classtime[0][num] = tempclasstimestart;
+				classtime[1][num] = tempclasstimeend;
+			}
+			for (int g = 0; g < 3; g++)
+			{
+				tempclassdate[g] = "";
+			}
+			tempclasstimestart = "";
+			tempclasstimeend = "";
+			num++;
+		}
+		if (num == answer)
+			continue;
+		if (tempelectives < 6 && !Classtaken[24] && Classtaken[5])//CPSC411
+		{
+			c = 23;//CPSC411
+			j = 0;
+			while (SubClasses[j][c][0] != '~')
+				j++;
+			bool temp = true;
+			int count = 0;
+			bool broke = false;
+			while (temp)
+			{
+				temp = false;
+				r = rand() % j;
+				temp = preferncechecker(SubClasses[r][c], SPreferences);
+				int k = 0;
+				while (SubClasses[r][c][k] != '\t')
+					k++;
+				k++;
+				int d = 0;
+				tempclassdate[0] = "";
+				tempclassdate[1] = "";
+				tempclassdate[2] = "";
+				tempclassdate[3] = "";
+				while (SubClasses[r][c][k] != ' ')
+				{
+					tempclassdate[d / 2] += SubClasses[r][c][k];
+					d++;
+					k++;
+				}
+				k++;
+				tempclasstimestart = "";
+				while (SubClasses[r][c][k] != '-')
+				{
+					tempclasstimestart += SubClasses[r][c][k];
+					k++;
+				}
+				k++;
+				tempclasstimeend = "";
+				while (SubClasses[r][c][k] != '\t')
+				{
+					tempclasstimeend += SubClasses[r][c][k];
+					k++;
+				}
+				for (int m = 0; m < 6; m++)
+				{
+					if (classtime[0][m].empty())
+					{
+						break;
+					}
+					bool trdate = false;
+					for (int g = 0; g < 3; g++)
+					{
+						if (classdate[g][m].empty())
+							break;
+						if (classdate[g][m] == tempclassdate[g])
+						{
+							trdate = true;
+						}
+					}
+					if (trdate) {
+						if (classtime[0][m] == tempclasstimestart)
+							temp = true;
+						else if (classtime[1][m] == tempclasstimeend)
+							temp = true;
+						else if (tempclasstimestart > classtime[0][m] && tempclasstimestart < classtime[1][m])
+							temp = true;
+						else if (tempclasstimeend > classtime[0][m] && tempclasstimeend < classtime[1][m])
+							temp = true;
+					}
+				}
+				k++;
+				count++;
+				if (count > 100)
+				{
+					broke = true;
+					break;
+				}
+			}
+			if (!broke)
+			{
+				tempelectives++;
+				ClassSchedule = ClassSchedule + CSUFClasses[c] + "\n" + SubClasses[r][c] + "\n";
+				for (int g = 0; g < 3; g++)
+					classdate[g][num] = tempclassdate[g];
+				classtime[0][num] = tempclasstimestart;
+				classtime[1][num] = tempclasstimeend;
+			}
+			for (int g = 0; g < 3; g++)
+			{
+				tempclassdate[g] = "";
+			}
+			tempclasstimestart = "";
+			tempclasstimeend = "";
+			num++;
+		}
+		if (num == answer)
+			continue;
+		if (tempelectives < 6 && !Classtaken[25] && Classtaken[9])//CPSC431
+		{
+			c = 24;//CPSC431
+			j = 0;
+			while (SubClasses[j][c][0] != '~')
+				j++;
+			bool temp = true;
+			int count = 0;
+			bool broke = false;
+			while (temp)
+			{
+				temp = false;
+				r = rand() % j;
+				temp = preferncechecker(SubClasses[r][c], SPreferences);
+				int k = 0;
+				while (SubClasses[r][c][k] != '\t')
+					k++;
+				k++;
+				int d = 0;
+				tempclassdate[0] = "";
+				tempclassdate[1] = "";
+				tempclassdate[2] = "";
+				tempclassdate[3] = "";
+				while (SubClasses[r][c][k] != ' ')
+				{
+					tempclassdate[d / 2] += SubClasses[r][c][k];
+					d++;
+					k++;
+				}
+				k++;
+				tempclasstimestart = "";
+				while (SubClasses[r][c][k] != '-')
+				{
+					tempclasstimestart += SubClasses[r][c][k];
+					k++;
+				}
+				k++;
+				tempclasstimeend = "";
+				while (SubClasses[r][c][k] != '\t')
+				{
+					tempclasstimeend += SubClasses[r][c][k];
+					k++;
+				}
+				for (int m = 0; m < 6; m++)
+				{
+					if (classtime[0][m].empty())
+					{
+						break;
+					}
+					bool trdate = false;
+					for (int g = 0; g < 3; g++)
+					{
+						if (classdate[g][m].empty())
+							break;
+						if (classdate[g][m] == tempclassdate[g])
+						{
+							trdate = true;
+						}
+					}
+					if (trdate) {
+						if (classtime[0][m] == tempclasstimestart)
+							temp = true;
+						else if (classtime[1][m] == tempclasstimeend)
+							temp = true;
+						else if (tempclasstimestart > classtime[0][m] && tempclasstimestart < classtime[1][m])
+							temp = true;
+						else if (tempclasstimeend > classtime[0][m] && tempclasstimeend < classtime[1][m])
+							temp = true;
+					}
+				}
+				k++;
+				count++;
+				if (count > 100)
+				{
+					broke = true;
+					break;
+				}
+			}
+			if (!broke)
+			{
+				tempelectives++;
+				ClassSchedule = ClassSchedule + CSUFClasses[c] + "\n" + SubClasses[r][c] + "\n";
+				for (int g = 0; g < 3; g++)
+					classdate[g][num] = tempclassdate[g];
+				classtime[0][num] = tempclasstimestart;
+				classtime[1][num] = tempclasstimeend;
+			}
+			for (int g = 0; g < 3; g++)
+			{
+				tempclassdate[g] = "";
+			}
+			tempclasstimestart = "";
+			tempclasstimeend = "";
+			num++;
+		}
+		if (num == answer)
+			continue;
+		if (tempelectives < 6 && !Classtaken[26] && Classtaken[1] && Classtaken[19])//CPSC439
+		{
+			c = 25;//CPSC439
+			j = 0;
+			while (SubClasses[j][c][0] != '~')
+				j++;
+			bool temp = true;
+			int count = 0;
+			bool broke = false;
+			while (temp)
+			{
+				temp = false;
+				r = rand() % j;
+				temp = preferncechecker(SubClasses[r][c], SPreferences);
+				int k = 0;
+				while (SubClasses[r][c][k] != '\t')
+					k++;
+				k++;
+				int d = 0;
+				tempclassdate[0] = "";
+				tempclassdate[1] = "";
+				tempclassdate[2] = "";
+				tempclassdate[3] = "";
+				while (SubClasses[r][c][k] != ' ')
+				{
+					tempclassdate[d / 2] += SubClasses[r][c][k];
+					d++;
+					k++;
+				}
+				k++;
+				tempclasstimestart = "";
+				while (SubClasses[r][c][k] != '-')
+				{
+					tempclasstimestart += SubClasses[r][c][k];
+					k++;
+				}
+				k++;
+				tempclasstimeend = "";
+				while (SubClasses[r][c][k] != '\t')
+				{
+					tempclasstimeend += SubClasses[r][c][k];
+					k++;
+				}
+				for (int m = 0; m < 6; m++)
+				{
+					if (classtime[0][m].empty())
+					{
+						break;
+					}
+					bool trdate = false;
+					for (int g = 0; g < 3; g++)
+					{
+						if (classdate[g][m].empty())
+							break;
+						if (classdate[g][m] == tempclassdate[g])
+						{
+							trdate = true;
+						}
+					}
+					if (trdate) {
+						if (classtime[0][m] == tempclasstimestart)
+							temp = true;
+						else if (classtime[1][m] == tempclasstimeend)
+							temp = true;
+						else if (tempclasstimestart > classtime[0][m] && tempclasstimestart < classtime[1][m])
+							temp = true;
+						else if (tempclasstimeend > classtime[0][m] && tempclasstimeend < classtime[1][m])
+							temp = true;
+					}
+				}
+				k++;
+				count++;
+				if (count > 100)
+				{
+					broke = true;
+					break;
+				}
+			}
+			if (!broke)
+			{
+				tempelectives++;
+				ClassSchedule = ClassSchedule + CSUFClasses[c] + "\n" + SubClasses[r][c] + "\n";
+				for (int g = 0; g < 3; g++)
+					classdate[g][num] = tempclassdate[g];
+				classtime[0][num] = tempclasstimestart;
+				classtime[1][num] = tempclasstimeend;
+			}
+			for (int g = 0; g < 3; g++)
+			{
+				tempclassdate[g] = "";
+			}
+			tempclasstimestart = "";
+			tempclasstimeend = "";
+			num++;
+		}
+		if (num == answer)
+			continue;
+		if (tempelectives < 6 && !Classtaken[27] && Classtaken[5] && Classtaken[19])//CPSC452
+		{
+			c = 27;//CPSC452
+			j = 0;
+			while (SubClasses[j][c][0] != '~')
+				j++;
+			bool temp = true;
+			int count = 0;
+			bool broke = false;
+			while (temp)
+			{
+				temp = false;
+				r = rand() % j;
+				temp = preferncechecker(SubClasses[r][c], SPreferences);
+				int k = 0;
+				while (SubClasses[r][c][k] != '\t')
+					k++;
+				k++;
+				int d = 0;
+				tempclassdate[0] = "";
+				tempclassdate[1] = "";
+				tempclassdate[2] = "";
+				tempclassdate[3] = "";
+				while (SubClasses[r][c][k] != ' ')
+				{
+					tempclassdate[d / 2] += SubClasses[r][c][k];
+					d++;
+					k++;
+				}
+				k++;
+				tempclasstimestart = "";
+				while (SubClasses[r][c][k] != '-')
+				{
+					tempclasstimestart += SubClasses[r][c][k];
+					k++;
+				}
+				k++;
+				tempclasstimeend = "";
+				while (SubClasses[r][c][k] != '\t')
+				{
+					tempclasstimeend += SubClasses[r][c][k];
+					k++;
+				}
+				for (int m = 0; m < 6; m++)
+				{
+					if (classtime[0][m].empty())
+					{
+						break;
+					}
+					bool trdate = false;
+					for (int g = 0; g < 3; g++)
+					{
+						if (classdate[g][m].empty())
+							break;
+						if (classdate[g][m] == tempclassdate[g])
+						{
+							trdate = true;
+						}
+					}
+					if (trdate) {
+						if (classtime[0][m] == tempclasstimestart)
+							temp = true;
+						else if (classtime[1][m] == tempclasstimeend)
+							temp = true;
+						else if (tempclasstimestart > classtime[0][m] && tempclasstimestart < classtime[1][m])
+							temp = true;
+						else if (tempclasstimeend > classtime[0][m] && tempclasstimeend < classtime[1][m])
+							temp = true;
+					}
+				}
+				k++;
+				count++;
+				if (count > 100)
+				{
+					broke = true;
+					break;
+				}
+			}
+			if (!broke)
+			{
+				tempelectives++;
+				ClassSchedule = ClassSchedule + CSUFClasses[c] + "\n" + SubClasses[r][c] + "\n";
+				for (int g = 0; g < 3; g++)
+					classdate[g][num] = tempclassdate[g];
+				classtime[0][num] = tempclasstimestart;
+				classtime[1][num] = tempclasstimeend;
+			}
+			for (int g = 0; g < 3; g++)
+			{
+				tempclassdate[g] = "";
+			}
+			tempclasstimestart = "";
+			tempclasstimeend = "";
+			num++;
+		}
+		if (num == answer)
+			continue;
+		if (tempelectives < 6 && !Classtaken[28] && Classtaken[11])//CPSC456
+		{
+			c = 28;//CPSC456
+			j = 0;
+			while (SubClasses[j][c][0] != '~')
+				j++;
+			bool temp = true;
+			int count = 0;
+			bool broke = false;
+			while (temp)
+			{
+				temp = false;
+				r = rand() % j;
+				temp = preferncechecker(SubClasses[r][c], SPreferences);
+				int k = 0;
+				while (SubClasses[r][c][k] != '\t')
+					k++;
+				k++;
+				int d = 0;
+				tempclassdate[0] = "";
+				tempclassdate[1] = "";
+				tempclassdate[2] = "";
+				tempclassdate[3] = "";
+				while (SubClasses[r][c][k] != ' ')
+				{
+					tempclassdate[d / 2] += SubClasses[r][c][k];
+					d++;
+					k++;
+				}
+				k++;
+				tempclasstimestart = "";
+				while (SubClasses[r][c][k] != '-')
+				{
+					tempclasstimestart += SubClasses[r][c][k];
+					k++;
+				}
+				k++;
+				tempclasstimeend = "";
+				while (SubClasses[r][c][k] != '\t')
+				{
+					tempclasstimeend += SubClasses[r][c][k];
+					k++;
+				}
+				for (int m = 0; m < 6; m++)
+				{
+					if (classtime[0][m].empty())
+					{
+						break;
+					}
+					bool trdate = false;
+					for (int g = 0; g < 3; g++)
+					{
+						if (classdate[g][m].empty())
+							break;
+						if (classdate[g][m] == tempclassdate[g])
+						{
+							trdate = true;
+						}
+					}
+					if (trdate) {
+						if (classtime[0][m] == tempclasstimestart)
+							temp = true;
+						else if (classtime[1][m] == tempclasstimeend)
+							temp = true;
+						else if (tempclasstimestart > classtime[0][m] && tempclasstimestart < classtime[1][m])
+							temp = true;
+						else if (tempclasstimeend > classtime[0][m] && tempclasstimeend < classtime[1][m])
+							temp = true;
+					}
+				}
+				k++;
+				count++;
+				if (count > 100)
+				{
+					broke = true;
+					break;
+				}
+			}
+			if (!broke)
+			{
+				tempelectives++;
+				ClassSchedule = ClassSchedule + CSUFClasses[c] + "\n" + SubClasses[r][c] + "\n";
+				for (int g = 0; g < 3; g++)
+					classdate[g][num] = tempclassdate[g];
+				classtime[0][num] = tempclasstimestart;
+				classtime[1][num] = tempclasstimeend;
+			}
+			for (int g = 0; g < 3; g++)
+			{
+				tempclassdate[g] = "";
+			}
+			tempclasstimestart = "";
+			tempclasstimeend = "";
+			num++;
+		}
+		if (num == answer)
+			continue;
+		if (tempelectives < 6 && !Classtaken[29] && Classtaken[12])//CPSC462
+		{
+			c = 29;//CPSC462
+			j = 0;
+			while (SubClasses[j][c][0] != '~')
+				j++;
+			bool temp = true;
+			int count = 0;
+			bool broke = false;
+			while (temp)
+			{
+				temp = false;
+				r = rand() % j;
+				temp = preferncechecker(SubClasses[r][c], SPreferences);
+				int k = 0;
+				while (SubClasses[r][c][k] != '\t')
+					k++;
+				k++;
+				int d = 0;
+				tempclassdate[0] = "";
+				tempclassdate[1] = "";
+				tempclassdate[2] = "";
+				tempclassdate[3] = "";
+				while (SubClasses[r][c][k] != ' ')
+				{
+					tempclassdate[d / 2] += SubClasses[r][c][k];
+					d++;
+					k++;
+				}
+				k++;
+				tempclasstimestart = "";
+				while (SubClasses[r][c][k] != '-')
+				{
+					tempclasstimestart += SubClasses[r][c][k];
+					k++;
+				}
+				k++;
+				tempclasstimeend = "";
+				while (SubClasses[r][c][k] != '\t')
+				{
+					tempclasstimeend += SubClasses[r][c][k];
+					k++;
+				}
+				for (int m = 0; m < 6; m++)
+				{
+					if (classtime[0][m].empty())
+					{
+						break;
+					}
+					bool trdate = false;
+					for (int g = 0; g < 3; g++)
+					{
+						if (classdate[g][m].empty())
+							break;
+						if (classdate[g][m] == tempclassdate[g])
+						{
+							trdate = true;
+						}
+					}
+					if (trdate) {
+						if (classtime[0][m] == tempclasstimestart)
+							temp = true;
+						else if (classtime[1][m] == tempclasstimeend)
+							temp = true;
+						else if (tempclasstimestart > classtime[0][m] && tempclasstimestart < classtime[1][m])
+							temp = true;
+						else if (tempclasstimeend > classtime[0][m] && tempclasstimeend < classtime[1][m])
+							temp = true;
+					}
+				}
+				k++;
+				count++;
+				if (count > 100)
+				{
+					broke = true;
+					break;
+				}
+			}
+			if (!broke)
+			{
+				tempelectives++;
+				ClassSchedule = ClassSchedule + CSUFClasses[c] + "\n" + SubClasses[r][c] + "\n";
+				for (int g = 0; g < 3; g++)
+					classdate[g][num] = tempclassdate[g];
+				classtime[0][num] = tempclasstimestart;
+				classtime[1][num] = tempclasstimeend;
+			}
+			for (int g = 0; g < 3; g++)
+			{
+				tempclassdate[g] = "";
+			}
+			tempclasstimestart = "";
+			tempclasstimeend = "";
+			num++;
+		}
+		if (num == answer)
+			continue;
+		if (tempelectives < 6 && !Classtaken[30] && Classtaken[12])//CPSC463
+		{
+			c = 30;//CPSC463
+			j = 0;
+			while (SubClasses[j][c][0] != '~')
+				j++;
+			bool temp = true;
+			int count = 0;
+			bool broke = false;
+			while (temp)
+			{
+				temp = false;
+				r = rand() % j;
+				temp = preferncechecker(SubClasses[r][c], SPreferences);
+				int k = 0;
+				while (SubClasses[r][c][k] != '\t')
+					k++;
+				k++;
+				int d = 0;
+				tempclassdate[0] = "";
+				tempclassdate[1] = "";
+				tempclassdate[2] = "";
+				tempclassdate[3] = "";
+				while (SubClasses[r][c][k] != ' ')
+				{
+					tempclassdate[d / 2] += SubClasses[r][c][k];
+					d++;
+					k++;
+				}
+				k++;
+				tempclasstimestart = "";
+				while (SubClasses[r][c][k] != '-')
+				{
+					tempclasstimestart += SubClasses[r][c][k];
+					k++;
+				}
+				k++;
+				tempclasstimeend = "";
+				while (SubClasses[r][c][k] != '\t')
+				{
+					tempclasstimeend += SubClasses[r][c][k];
+					k++;
+				}
+				for (int m = 0; m < 6; m++)
+				{
+					if (classtime[0][m].empty())
+					{
+						break;
+					}
+					bool trdate = false;
+					for (int g = 0; g < 3; g++)
+					{
+						if (classdate[g][m].empty())
+							break;
+						if (classdate[g][m] == tempclassdate[g])
+						{
+							trdate = true;
+						}
+					}
+					if (trdate) {
+						if (classtime[0][m] == tempclasstimestart)
+							temp = true;
+						else if (classtime[1][m] == tempclasstimeend)
+							temp = true;
+						else if (tempclasstimestart > classtime[0][m] && tempclasstimestart < classtime[1][m])
+							temp = true;
+						else if (tempclasstimeend > classtime[0][m] && tempclasstimeend < classtime[1][m])
+							temp = true;
+					}
+				}
+				k++;
+				count++;
+				if (count > 100)
+				{
+					broke = true;
+					break;
+				}
+			}
+			if (!broke)
+			{
+				tempelectives++;
+				ClassSchedule = ClassSchedule + CSUFClasses[c] + "\n" + SubClasses[r][c] + "\n";
+				for (int g = 0; g < 3; g++)
+					classdate[g][num] = tempclassdate[g];
+				classtime[0][num] = tempclasstimestart;
+				classtime[1][num] = tempclasstimeend;
+			}
+			for (int g = 0; g < 3; g++)
+			{
+				tempclassdate[g] = "";
+			}
+			tempclasstimestart = "";
+			tempclasstimeend = "";
+			num++;
+		}
+		if (num == answer)
+			continue;
+		if (tempelectives < 6 && !Classtaken[31] && Classtaken[12])//CPSC464
+		{
+			c = 31;//CPSC464
+			j = 0;
+			while (SubClasses[j][c][0] != '~')
+				j++;
+			bool temp = true;
+			int count = 0;
+			bool broke = false;
+			while (temp)
+			{
+				temp = false;
+				r = rand() % j;
+				temp = preferncechecker(SubClasses[r][c], SPreferences);
+				int k = 0;
+				while (SubClasses[r][c][k] != '\t')
+					k++;
+				k++;
+				int d = 0;
+				tempclassdate[0] = "";
+				tempclassdate[1] = "";
+				tempclassdate[2] = "";
+				tempclassdate[3] = "";
+				while (SubClasses[r][c][k] != ' ')
+				{
+					tempclassdate[d / 2] += SubClasses[r][c][k];
+					d++;
+					k++;
+				}
+				k++;
+				tempclasstimestart = "";
+				while (SubClasses[r][c][k] != '-')
+				{
+					tempclasstimestart += SubClasses[r][c][k];
+					k++;
+				}
+				k++;
+				tempclasstimeend = "";
+				while (SubClasses[r][c][k] != '\t')
+				{
+					tempclasstimeend += SubClasses[r][c][k];
+					k++;
+				}
+				for (int m = 0; m < 6; m++)
+				{
+					if (classtime[0][m].empty())
+					{
+						break;
+					}
+					bool trdate = false;
+					for (int g = 0; g < 3; g++)
+					{
+						if (classdate[g][m].empty())
+							break;
+						if (classdate[g][m] == tempclassdate[g])
+						{
+							trdate = true;
+						}
+					}
+					if (trdate) {
+						if (classtime[0][m] == tempclasstimestart)
+							temp = true;
+						else if (classtime[1][m] == tempclasstimeend)
+							temp = true;
+						else if (tempclasstimestart > classtime[0][m] && tempclasstimestart < classtime[1][m])
+							temp = true;
+						else if (tempclasstimeend > classtime[0][m] && tempclasstimeend < classtime[1][m])
+							temp = true;
+					}
+				}
+				k++;
+				count++;
+				if (count > 100)
+				{
+					broke = true;
+					break;
+				}
+			}
+			if (!broke)
+			{
+				tempelectives++;
+				ClassSchedule = ClassSchedule + CSUFClasses[c] + "\n" + SubClasses[r][c] + "\n";
+				for (int g = 0; g < 3; g++)
+					classdate[g][num] = tempclassdate[g];
+				classtime[0][num] = tempclasstimestart;
+				classtime[1][num] = tempclasstimeend;
+			}
+			for (int g = 0; g < 3; g++)
+			{
+				tempclassdate[g] = "";
+			}
+			tempclasstimestart = "";
+			tempclasstimeend = "";
+			num++;
+		}
+		if (num == answer)
+			continue;
+		if (tempelectives < 6 && !Classtaken[32] && Classtaken[12])//CPSC466
+		{
+			c = 32;//CPSC466
+			j = 0;
+			while (SubClasses[j][c][0] != '~')
+				j++;
+			bool temp = true;
+			int count = 0;
+			bool broke = false;
+			while (temp)
+			{
+				temp = false;
+				r = rand() % j;
+				temp = preferncechecker(SubClasses[r][c], SPreferences);
+				int k = 0;
+				while (SubClasses[r][c][k] != '\t')
+					k++;
+				k++;
+				int d = 0;
+				tempclassdate[0] = "";
+				tempclassdate[1] = "";
+				tempclassdate[2] = "";
+				tempclassdate[3] = "";
+				while (SubClasses[r][c][k] != ' ')
+				{
+					tempclassdate[d / 2] += SubClasses[r][c][k];
+					d++;
+					k++;
+				}
+				k++;
+				tempclasstimestart = "";
+				while (SubClasses[r][c][k] != '-')
+				{
+					tempclasstimestart += SubClasses[r][c][k];
+					k++;
+				}
+				k++;
+				tempclasstimeend = "";
+				while (SubClasses[r][c][k] != '\t')
+				{
+					tempclasstimeend += SubClasses[r][c][k];
+					k++;
+				}
+				for (int m = 0; m < 6; m++)
+				{
+					if (classtime[0][m].empty())
+					{
+						break;
+					}
+					bool trdate = false;
+					for (int g = 0; g < 3; g++)
+					{
+						if (classdate[g][m].empty())
+							break;
+						if (classdate[g][m] == tempclassdate[g])
+						{
+							trdate = true;
+						}
+					}
+					if (trdate) {
+						if (classtime[0][m] == tempclasstimestart)
+							temp = true;
+						else if (classtime[1][m] == tempclasstimeend)
+							temp = true;
+						else if (tempclasstimestart > classtime[0][m] && tempclasstimestart < classtime[1][m])
+							temp = true;
+						else if (tempclasstimeend > classtime[0][m] && tempclasstimeend < classtime[1][m])
+							temp = true;
+					}
+				}
+				k++;
+				count++;
+				if (count > 100)
+				{
+					broke = true;
+					break;
+				}
+			}
+			if (!broke)
+			{
+				tempelectives++;
+				ClassSchedule = ClassSchedule + CSUFClasses[c] + "\n" + SubClasses[r][c] + "\n";
+				for (int g = 0; g < 3; g++)
+					classdate[g][num] = tempclassdate[g];
+				classtime[0][num] = tempclasstimestart;
+				classtime[1][num] = tempclasstimeend;
+			}
+			for (int g = 0; g < 3; g++)
+			{
+				tempclassdate[g] = "";
+			}
+			tempclasstimestart = "";
+			tempclasstimeend = "";
+			num++;
+		}
+		if (num == answer)
+			continue;
+		if (tempelectives < 6 && !Classtaken[33] && Classtaken[11])//CPSC479
+		{
+			c = 34;//CPSC479
+			j = 0;
+			while (SubClasses[j][c][0] != '~')
+				j++;
+			bool temp = true;
+			int count = 0;
+			bool broke = false;
+			while (temp)
+			{
+				temp = false;
+				r = rand() % j;
+				temp = preferncechecker(SubClasses[r][c], SPreferences);
+				int k = 0;
+				while (SubClasses[r][c][k] != '\t')
+					k++;
+				k++;
+				int d = 0;
+				tempclassdate[0] = "";
+				tempclassdate[1] = "";
+				tempclassdate[2] = "";
+				tempclassdate[3] = "";
+				while (SubClasses[r][c][k] != ' ')
+				{
+					tempclassdate[d / 2] += SubClasses[r][c][k];
+					d++;
+					k++;
+				}
+				k++;
+				tempclasstimestart = "";
+				while (SubClasses[r][c][k] != '-')
+				{
+					tempclasstimestart += SubClasses[r][c][k];
+					k++;
+				}
+				k++;
+				tempclasstimeend = "";
+				while (SubClasses[r][c][k] != '\t')
+				{
+					tempclasstimeend += SubClasses[r][c][k];
+					k++;
+				}
+				for (int m = 0; m < 6; m++)
+				{
+					if (classtime[0][m].empty())
+					{
+						break;
+					}
+					bool trdate = false;
+					for (int g = 0; g < 3; g++)
+					{
+						if (classdate[g][m].empty())
+							break;
+						if (classdate[g][m] == tempclassdate[g])
+						{
+							trdate = true;
+						}
+					}
+					if (trdate) {
+						if (classtime[0][m] == tempclasstimestart)
+							temp = true;
+						else if (classtime[1][m] == tempclasstimeend)
+							temp = true;
+						else if (tempclasstimestart > classtime[0][m] && tempclasstimestart < classtime[1][m])
+							temp = true;
+						else if (tempclasstimeend > classtime[0][m] && tempclasstimeend < classtime[1][m])
+							temp = true;
+					}
+				}
+				k++;
+				count++;
+				if (count > 100)
+				{
+					broke = true;
+					break;
+				}
+			}
+			if (!broke)
+			{
+				tempelectives++;
+				ClassSchedule = ClassSchedule + CSUFClasses[c] + "\n" + SubClasses[r][c] + "\n";
+				for (int g = 0; g < 3; g++)
+					classdate[g][num] = tempclassdate[g];
+				classtime[0][num] = tempclasstimestart;
+				classtime[1][num] = tempclasstimeend;
+			}
+			for (int g = 0; g < 3; g++)
+			{
+				tempclassdate[g] = "";
+			}
+			tempclasstimestart = "";
+			tempclasstimeend = "";
+			num++;
+		}
+		if (num == answer)
+			continue;
+		if (tempelectives < 6 && !Classtaken[34] && Classtaken[10] && Classtaken[20])//CPSC483
+		{
+			c = 36;//CPSC483
+			j = 0;
+			while (SubClasses[j][c][0] != '~')
+				j++;
+			bool temp = true;
+			int count = 0;
+			bool broke = false;
+			while (temp)
+			{
+				temp = false;
+				r = rand() % j;
+				temp = preferncechecker(SubClasses[r][c], SPreferences);
+				int k = 0;
+				while (SubClasses[r][c][k] != '\t')
+					k++;
+				k++;
+				int d = 0;
+				tempclassdate[0] = "";
+				tempclassdate[1] = "";
+				tempclassdate[2] = "";
+				tempclassdate[3] = "";
+				while (SubClasses[r][c][k] != ' ')
+				{
+					tempclassdate[d / 2] += SubClasses[r][c][k];
+					d++;
+					k++;
+				}
+				k++;
+				tempclasstimestart = "";
+				while (SubClasses[r][c][k] != '-')
+				{
+					tempclasstimestart += SubClasses[r][c][k];
+					k++;
+				}
+				k++;
+				tempclasstimeend = "";
+				while (SubClasses[r][c][k] != '\t')
+				{
+					tempclasstimeend += SubClasses[r][c][k];
+					k++;
+				}
+				for (int m = 0; m < 6; m++)
+				{
+					if (classtime[0][m].empty())
+					{
+						break;
+					}
+					bool trdate = false;
+					for (int g = 0; g < 3; g++)
+					{
+						if (classdate[g][m].empty())
+							break;
+						if (classdate[g][m] == tempclassdate[g])
+						{
+							trdate = true;
+						}
+					}
+					if (trdate) {
+						if (classtime[0][m] == tempclasstimestart)
+							temp = true;
+						else if (classtime[1][m] == tempclasstimeend)
+							temp = true;
+						else if (tempclasstimestart > classtime[0][m] && tempclasstimestart < classtime[1][m])
+							temp = true;
+						else if (tempclasstimeend > classtime[0][m] && tempclasstimeend < classtime[1][m])
+							temp = true;
+					}
+				}
+				k++;
+				count++;
+				if (count > 100)
+				{
+					broke = true;
+					break;
+				}
+			}
+			if (!broke)
+			{
+				tempelectives++;
+				ClassSchedule = ClassSchedule + CSUFClasses[c] + "\n" + SubClasses[r][c] + "\n";
+				for (int g = 0; g < 3; g++)
+					classdate[g][num] = tempclassdate[g];
+				classtime[0][num] = tempclasstimestart;
+				classtime[1][num] = tempclasstimeend;
+			}
+			for (int g = 0; g < 3; g++)
+			{
+				tempclassdate[g] = "";
+			}
+			tempclasstimestart = "";
+			tempclasstimeend = "";
+			num++;
+		}
+		if (num == answer)
+			continue;
+		if (tempelectives < 6 && !Classtaken[35] && Classtaken[5] && Classtaken[17] && Classtaken[19])//CPSC484
+		{
+			c = 37;//CPSC484
+			j = 0;
+			while (SubClasses[j][c][0] != '~')
+				j++;
+			bool temp = true;
+			int count = 0;
+			bool broke = false;
+			while (temp)
+			{
+				temp = false;
+				r = rand() % j;
+				temp = preferncechecker(SubClasses[r][c], SPreferences);
+				int k = 0;
+				while (SubClasses[r][c][k] != '\t')
+					k++;
+				k++;
+				int d = 0;
+				tempclassdate[0] = "";
+				tempclassdate[1] = "";
+				tempclassdate[2] = "";
+				tempclassdate[3] = "";
+				while (SubClasses[r][c][k] != ' ')
+				{
+					tempclassdate[d / 2] += SubClasses[r][c][k];
+					d++;
+					k++;
+				}
+				k++;
+				tempclasstimestart = "";
+				while (SubClasses[r][c][k] != '-')
+				{
+					tempclasstimestart += SubClasses[r][c][k];
+					k++;
+				}
+				k++;
+				tempclasstimeend = "";
+				while (SubClasses[r][c][k] != '\t')
+				{
+					tempclasstimeend += SubClasses[r][c][k];
+					k++;
+				}
+				for (int m = 0; m < 6; m++)
+				{
+					if (classtime[0][m].empty())
+					{
+						break;
+					}
+					bool trdate = false;
+					for (int g = 0; g < 3; g++)
+					{
+						if (classdate[g][m].empty())
+							break;
+						if (classdate[g][m] == tempclassdate[g])
+						{
+							trdate = true;
+						}
+					}
+					if (trdate) {
+						if (classtime[0][m] == tempclasstimestart)
+							temp = true;
+						else if (classtime[1][m] == tempclasstimeend)
+							temp = true;
+						else if (tempclasstimestart > classtime[0][m] && tempclasstimestart < classtime[1][m])
+							temp = true;
+						else if (tempclasstimeend > classtime[0][m] && tempclasstimeend < classtime[1][m])
+							temp = true;
+					}
+				}
+				k++;
+				count++;
+				if (count > 100)
+				{
+					broke = true;
+					break;
+				}
+			}
+			if (!broke)
+			{
+				tempelectives++;
+				ClassSchedule = ClassSchedule + CSUFClasses[c] + "\n" + SubClasses[r][c] + "\n";
+				for (int g = 0; g < 3; g++)
+					classdate[g][num] = tempclassdate[g];
+				classtime[0][num] = tempclasstimestart;
+				classtime[1][num] = tempclasstimeend;
+			}
+			for (int g = 0; g < 3; g++)
+			{
+				tempclassdate[g] = "";
+			}
+			tempclasstimestart = "";
+			tempclasstimeend = "";
+			num++;
+		}
+		if (num == answer)
+			continue;
+
 		if (ClassSchedule.empty())
 		{
 			i--;
@@ -2559,7 +4021,7 @@ void Student::setupbools()
 	for (int i = 0; i < 5; i++)
 		for (int j = 0; j < 10; j++)
 			SPreferences[i][j] = 0;
-	for (int i = 0; i < 26; i++)
+	for (int i = 0; i < 36; i++)
 		Classtaken[i] = 0;
 }
 void Student::setname(string F, string L)
@@ -2597,13 +4059,13 @@ void Student::getSPreferences(bool SP[10], int i)
 		SP[j] = SPreferences[i][j];
 	}
 }
-void Student::setClasstaken(bool CT[26])
+void Student::setClasstaken(bool CT[36])
 {
-	for (int j = 0; j < 26; j++)
+	for (int j = 0; j < 36; j++)
 		Classtaken[j] = CT[j];
 }
-void Student::getClasstaken(bool CT[26])
+void Student::getClasstaken(bool CT[36])
 {
-	for (int j = 0; j < 26; j++)
+	for (int j = 0; j < 36; j++)
 		CT[j] = Classtaken[j];
 }
